@@ -1,3 +1,4 @@
+#sitemap generator
 import os
 from datetime import datetime
 from xml.dom.minidom import Document
