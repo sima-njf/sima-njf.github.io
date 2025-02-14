@@ -1,0 +1,461 @@
+
+.container {
+    background-color: var(--white);
+    align-items: stretch;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+.information-body{
+    width: 40%;
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.information-body-name {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-container-img-tablet{
+    display: none;
+}
+.header-container-img-mobile-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.header-container-img-mobile{
+    display: none;
+}
+
+.information-body-name-h1 {
+    width: 100%;
+    font-size: 36px;
+    margin: 0;
+    color: var(--revhead);
+    position: relative;
+    overflow: hidden; /* Hide overflowing content during typing */
+    white-space: wrap; /* Prevent wrapping */
+    border-right: 2px solid var(--sir); /* Typewriter cursor effect */
+    animation: caret 1s step-end infinite; /* Blinking cursor */
+    transition: width 0.5s ease, max-width 0.5s ease; /* Smooth transition for width */
+    display: inline-block; /* Allow width changes */
+    max-width: fit-content; /* Ensure smooth resizing */
+}
+
+
+
+/* Animation for blinking cursor */
+@keyframes caret {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Clicked Effect */
+.information-body-name-h1.expanded {
+    animation: none; /* Remove cursor blinking */
+    border-right: none; /* Remove cursor */
+}
+.information-body-name-h1-holder{
+    width: 100%;
+    padding: 5px 15px;
+    margin: 20px 0px 0px 0px;
+    color: var(--sir);
+    background-color: var(--peste);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.information-body-name-h1-div{
+    width: 100%;
+    margin-top: -10px;
+    min-height: 10px;
+    background: var(--purple);
+}
+
+.information-body-paragraphs{
+    border: dashed 2px var(--black);
+    padding: 10px;
+    margin: 10px;
+}
+.information-body-paragraphs-textarea{
+    color: var(--revhead);
+    width: 100%;
+    font-size: 16px;
+    text-align: justify;
+    line-height: 25px;
+}
+
+
+
+.picture-container{
+    width: 40%;
+    margin: 0px 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#expand-button{
+    color: var(--sefid);
+    margin: 20px;
+}
+
+.profile-card-contact-me{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-card-contact-me-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.contact-me-form{
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.contact-me-form-strong{
+    color: var(--revhead);
+    font-size: 20px;
+    margin: 20px 0px 0px 0px;
+}
+.contact-me-form-inputs{
+    width: 100%;
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+.contact-me-form-input{
+    width: 45%;
+    padding: 5px 15px;
+    font-family: 'Roboto Mono', monospace;
+    min-height: 40px;
+    background-color: var(--peste);
+    border: dashed 2px var(--revhead);
+    color: var(--yufo);
+    border-radius: 15px;
+}
+.contact-me-form-textare{
+    width: 100%;
+    padding: 5px 15px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+    resize: none;
+    min-height: 20vh;
+    background-color: var(--peste);
+    border: dashed 2px var(--revhead);
+    color: var(--yufo);
+    border-radius: 15px;
+}
+.contact-me-form-button{
+    cursor: pointer;
+    width: 100%;
+    padding: 5px 15px;
+    font-family: 'Roboto Mono', monospace;
+    min-height: 40px;
+    font-size: 16px;
+    background-color: var(--peste);
+    border: dashed 2px var(--revhead);
+    color: var(--yufo);
+    border-radius: 15px;
+}
+.contact-me-form-button:hover{
+    background-color: var(--blueyuf);
+    border: dashed 2px var(--white);
+    color: var(--sefid);
+}
+
+.picture-container-switchb-holder{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.information-body-cards{
+    width: 100%;
+    min-height: 10px;
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+}
+.information-body-card {
+    cursor: pointer;
+    width: 45%;
+    font-size: 16px;
+    margin: 0px 10px;
+    border: dashed 2px var(--black);
+    background-color: var(--peste);
+    box-shadow: 2px 2px 10px var(--black);
+    color: var(--yufo);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    /* Add transition for smooth scaling */
+    transition: transform 0.3s ease; /* Duration and easing function */
+}
+
+.information-body-card:hover {
+    transform: scale(1.01); /* Scale up by 10% on hover */
+}
+.information-body-card-strong{
+    padding: 5px 15px;
+}
+.information-body-card-img{
+    width: 100%;
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.information-body-card-content{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.picture-container-tabletmobile{
+    width: 100%;
+    display: none !important;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+#captchaTextTablet{
+    margin: 0px 10px;
+}
+.profile-card-education{
+    width: 80%;
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.profile-card-education-logos{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.profile-card-education-logo{
+    width: 50%;
+    margin: 0px 10px;
+    border: dashed 2px var(--revhead);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.profile-card-education-logo-img{
+    margin: 10px 0px;
+}
+.profile-card-education-strong{
+    width: 100%;
+    padding: 10px;
+    font-size: 25px;
+    color: var(--revhead);
+    text-align: left;
+}
+.profile-card-education-logo-p{
+    font-size: 16px;
+    margin: 1px 0px;
+    color: var(--yufo);
+    text-align: center;
+}
+.profile-card-education-logo-p-strong{
+    font-size: 18px;
+    margin: 1px 0px;
+    color: var(--yufo);
+    text-align: center;
+}
+.profile-card-education-logo-strong{
+    font-size: 14px;
+    margin: 10px 0px -5px 0px;
+    color: var(--revhead);
+    text-align: center;
+    z-index: 10;
+}
+.profile-card-education-logo-hline{
+    width: 100%;
+    min-height: 40px;
+    background-color: var(--peste);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    z-index: 9;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1300px) {
+
+    .information-body {
+        width: calc(100% - 60px);
+        padding: 20px;
+        box-sizing: border-box;
+        transition: margin-left 0.3s ease-in-out;
+    }
+    .picture-container {
+        display: none !important;
+    }
+    .picture-container-tabletmobile{
+        display: flex !important;
+    }
+}
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+    .header-container-img-tablet{
+        display: inline-block;
+        border: solid 2px var(--black);
+        margin: 0px 10px;
+        border-radius: 5px;
+    }
+    .picture-container {
+        display: none !important;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .information-body {
+        width: calc(100% - 60px);
+        margin-left: 60px;
+        padding: 20px;
+        box-sizing: border-box;
+        transition: margin-left 0.3s ease-in-out;
+    }
+
+    .information-body-paragraphs-textarea{
+        font-size: 16px;
+        line-height:unset;
+    }
+    .information-body-name-h1{
+        padding: 0;
+        max-width: max-content;
+
+    }
+    .picture-container-tabletmobile{
+        display: flex !important;
+    }
+
+    header.expanded + .container .information-body {
+        margin-left: 0; 
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .picture-container {
+        display: none !important;
+    }
+    .header-container-img-mobile{
+        display: inline-block;
+        border: solid 2px var(--black);
+        margin: 10px 0px;
+        border-radius: 5px;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .information-body {
+        width: calc(100% - 60px);
+        margin-left: 60px;
+        padding: 20px;
+        box-sizing: border-box;
+        transition: margin-left 0.3s ease-in-out;
+    }
+    .information-body-paragraphs-textarea{
+        font-size: 13px;
+        line-height:unset;
+    }
+    .information-body-name{
+        margin-top: 0px;
+        margin: 10px 0px;
+    }
+    .information-body-name-h1{
+        padding: 0;
+        font-size: 20px;
+        max-width: max-content;
+
+    }
+    .information-body-cards{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .information-body-card{
+        width: 70%;
+        margin: 10px;
+    }
+    .picture-container-tabletmobile{
+        display: flex !important;
+        width: 100%;
+    }
+    .contact-me-form-inputs{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .contact-me-form{
+        width: 100%;
+    }
+    .contact-me-form-input{
+        width: 100%;
+        margin: 10px 0px;
+    }
+    .profile-card-education-logos{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .profile-card-education-logo{
+        width: 100%;
+        margin: 10px 0px;
+    }
+
+    header.expanded + .container .information-body {
+        margin-left: 0; /* Keeps content in place */
+    }
+}
+

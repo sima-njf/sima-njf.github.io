@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+:root{
+    --revhead: #15191d;
+    --zard:#EBDBB2;
+    --sefid:white;
+    --blue: #292c41;
+    --blueyuf: #748794;
+    --peste: #D4E7E2;
+    --white: white;
+    --black: #1a1a1a;
+    --purple:#9d76ff;
+    --yufo : #15191d    ;
+}
+body.night-mode {
+    --revhead: white;
+    --sefid:white;
+    --blueyuf: #3fe593;
+    --yufo : #3fe593;
+    --blue: #292c41;
+    --white: #292c41; /* Swap white with black */
+    --black: #292c41;   /* Swap black with white */
+    --peste: #2C3E50; /* Optional: Change other colors if needed */
+    background-color: var(--black); /* Use the swapped black */
+    color: var(--white); /* Use the swapped white */
+    
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    min-height: 100vh;
+    font-size: 18px;
+    display: flex;
+}
+
+body, .container {
+    background-color: var(--white);
+}

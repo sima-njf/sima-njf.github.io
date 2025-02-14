@@ -1,0 +1,127 @@
+.picture-container-switchb-holder-switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 24px;
+    margin: 0px 5px
+}
+
+.picture-container-switchb-holder-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.picture-container-switchb-holder-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--white);
+    transition: 0.3s;
+    border: dashed 1px var(--black);
+    border-radius: 24px;
+}
+
+.picture-container-switchb-holder-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+    background-color: var(--blue);
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+/* Checked State (Night Mode) */
+input:checked + .picture-container-switchb-holder-slider {
+    background-color: var(--yufo); /* Blue Color */
+}
+
+input:checked + .picture-container-switchb-holder-slider:before {
+    transform: translateX(20px);
+}
+
+.sun-icon {
+    display: inline-block;
+    font-size: 20px;
+    color: var(--zard);
+    font-weight: 100;
+    font-weight: 200 !important;
+}
+
+.moon-icon {
+    display: none !important; 
+    font-size: 20px;
+    color: var(--yufo);
+}
+
+/* Night Mode: Swap Icons */
+body.night-mode .sun-icon {
+    display: none; /* Hide the sun icon in night mode */
+}
+
+body.night-mode .moon-icon {
+    display: inline-block !important; /* Show the moon icon in night mode */
+}
+
+
+
+
+/* CAPTCHA Container */
+.captcha-container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+#captchaText{
+    font-size: 16px;
+    margin: 0px 10px;
+    color: var(--revhead);
+}
+
+/* CAPTCHA Box */
+.captcha-box {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Box Styling */
+.box {
+    width: 100%;
+    height: 100%;
+    background-color: var(--peste);
+    border: 2px dashed var(--revhead);
+    transition: background-color 0.3s ease;
+}
+
+/* Tick Mark Styling */
+.tick {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: var(--yufo);
+    display: none; /* Hidden initially */
+}
+
+/* Verified State */
+.captcha-box.verified .box {
+    background-color: var(--peste); /* Light green background */
+}
+
+.captcha-box.verified .tick {
+    display: block !important; /* Show the tick mark */
+}
