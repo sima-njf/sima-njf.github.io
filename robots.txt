@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://sima-njf.github.io/sitemap_index.xml
+Sitemap: https://sima-njf.github.io/sitemap.xml
