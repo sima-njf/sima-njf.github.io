@@ -3,7 +3,7 @@ name: Generate Sitemap
 on:
   push:
     branches:
-      - main 
+      - main  # Only trigger on manual commits, not on auto-generated ones
 
 jobs:
   generate-sitemap:
@@ -33,11 +33,11 @@ jobs:
           git config --global user.name "GitHub Action"
           git checkout -b update-sitemap-${{ github.run_id }}
           git add sitemap.xml
-          git commit -m "Update sitemap.xml" || echo "No changes to commit"
+          git commit -m "Update sitemap.xml [skip ci]" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/sima-njf/sima-njf.github.io.git update-sitemap-${{ github.run_id }}
 
       - name: Create Pull Request
         env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Set GH_TOKEN for GitHub CLI
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
           gh pr create --base main --head update-sitemap-${{ github.run_id }} --title "Update sitemap.xml" --body "Automatically generated sitemap update."
