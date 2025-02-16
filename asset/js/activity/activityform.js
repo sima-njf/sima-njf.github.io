@@ -1,5 +1,5 @@
 document.getElementById('activity-form').addEventListener('submit', async function (event) {
-  event.preventDefault();
+  event.preventDefault(); // Prevent page refresh
 
   const title = document.getElementById('title').value;
   const image = document.getElementById('image').value;
@@ -21,14 +21,17 @@ document.getElementById('activity-form').addEventListener('submit', async functi
       body: JSON.stringify(issueData)
     });
 
+    const responseData = await response.json();
+    console.log("GitHub API Response:", responseData); // Log API response for debugging
+
     if (response.ok) {
       alert('Activity submitted successfully!');
       document.getElementById('activity-form').reset();
     } else {
-      alert('Failed to submit activity. Please check your GitHub repository settings.');
+      alert(`Failed to submit activity: ${responseData.message}`);
     }
   } catch (error) {
     console.error('Error submitting activity:', error);
-    alert('An error occurred. Please try again.');
+    alert('An error occurred. Check the console for details.');
   }
 });
