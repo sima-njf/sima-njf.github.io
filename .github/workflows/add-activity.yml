@@ -60,10 +60,10 @@ jobs:
           git checkout -b update-activities-${{ github.run_id }}
           git add asset/data/activities.json
           git commit -m "Add new activity: $ACTIVITY_TITLE"
-          git push origin update-activities-${{ github.run_id }}
+          git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/sima-njf/sima-njf.github.io.git update-activities-${{ github.run_id }}
 
       - name: Create Pull Request
         run: |
           gh pr create --base main --head update-activities-${{ github.run_id }} --title "Add new activity: $ACTIVITY_TITLE" --body "Automatically generated activity update."
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
