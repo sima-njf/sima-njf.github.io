@@ -53,28 +53,17 @@ jobs:
              --arg timestamp "$ACTIVITY_TIMESTAMP" \
              '.activities += [{"title": $title, "image": $image, "description": $description, "link": $link, "timestamp": $timestamp}]' "$ACTIVITIES_FILE" > temp.json && mv temp.json "$ACTIVITIES_FILE"
 
-      - name: Wait for GitHub Pages Deployment to Finish
-        run: |
-          echo "Waiting for GitHub Pages deployment to complete..."
-          for i in {1..10}; do
-            DEPLOY_STATUS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/pages" | jq -r '.status')
-
-            echo "GitHub Pages Status: $DEPLOY_STATUS"
-            if [[ "$DEPLOY_STATUS" == "built" ]]; then
-              echo "GitHub Pages deployment completed!"
-              break
-            fi
-            sleep 30  # Wait 30 seconds before checking again
-          done
-
-      - name: Commit and Push Changes
+      - name: Commit and Push Changes to `update-activities` Branch
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git pull origin main --rebase  # Pull latest changes to prevent conflicts
+          git checkout -b update-activities-${{ github.run_id }}
           git add asset/data/activities.json
           git commit -m "Add new activity: $ACTIVITY_TITLE"
-          git push
+          git push origin update-activities-${{ github.run_id }}
+
+      - name: Create Pull Request
+        run: |
+          gh pr create --base main --head update-activities-${{ github.run_id }} --title "Add new activity: $ACTIVITY_TITLE" --body "Automatically generated activity update."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
