@@ -63,7 +63,7 @@ jobs:
           git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/sima-njf/sima-njf.github.io.git update-activities-${{ github.run_id }}
 
       - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Set GH_TOKEN for GitHub CLI
         run: |
           gh pr create --base main --head update-activities-${{ github.run_id }} --title "Add new activity: $ACTIVITY_TITLE" --body "Automatically generated activity update."
-        env:
-          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
