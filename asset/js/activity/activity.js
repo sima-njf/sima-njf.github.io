@@ -18,8 +18,28 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 fetch('/asset/data/activities.json')
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.text(); // Read response as text first for debugging
+    })
+    .then(text => {
+        console.log("🔍 Raw JSON content:", text); // Log raw JSON content
+
+        if (!text.trim()) {
+            throw new Error("❌ JSON file is empty!");
+        }
+
+        return JSON.parse(text); // Convert to JSON
+    })
     .then(data => {
+        console.log("✅ Parsed JSON data:", data);
+
+        if (!data.activities || data.activities.length === 0) {
+            throw new Error("❌ No activities found in JSON!");
+        }
+
         const container = document.getElementById('activities-container');
         const template = document.getElementById('activity-template');
 
@@ -41,4 +61,5 @@ fetch('/asset/data/activities.json')
             container.appendChild(activityDiv);
         });
     })
-    .catch(error => console.error('Error fetching activities:', error));
+    .catch(error => console.error('❌ Error fetching activities:', error));
+
