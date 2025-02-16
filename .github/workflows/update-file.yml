@@ -44,21 +44,27 @@ jobs:
         run: |
           ACTIVITIES_FILE="asset/data/activities.json"  # ✅ Correct file path
 
-          # ✅ Confirm file exists before modifying
-          if [ -f "$ACTIVITIES_FILE" ]; then
-            echo "✅ File exists: $ACTIVITIES_FILE"
-          else
+          # ✅ Ensure file exists before modifying
+          if [ ! -f "$ACTIVITIES_FILE" ]; then
             echo "❌ ERROR: activities.json not found!"
             exit 1
           fi
 
+          echo "✅ File exists: $ACTIVITIES_FILE"
           echo "Checking File Status:"
           ls -l "$ACTIVITIES_FILE"
 
           echo "Before Update:"
-          cat "$ACTIVITIES_FILE" || echo "File is empty"
+          cat "$ACTIVITIES_FILE" || echo "❌ File is empty"
 
-          # ✅ Ensure jq correctly updates the JSON
+          # ✅ Initialize JSON if the file is empty
+          if [ ! -s "$ACTIVITIES_FILE" ]; then
+            echo '{"activities": []}' > "$ACTIVITIES_FILE"
+            echo "✅ Initialized empty JSON file!"
+          fi
+
+          # ✅ Debug `jq` Execution
+          echo "🚀 Running jq update..."
           jq --arg title "$ACTIVITY_TITLE" \
              --arg image "$ACTIVITY_IMAGE" \
              --arg description "$ACTIVITY_DESCRIPTION" \
@@ -67,7 +73,7 @@ jobs:
              '.activities += [{"title": $title, "image": $image, "description": $description, "link": $link, "timestamp": $timestamp}]' "$ACTIVITIES_FILE" > temp.json
 
           if [ $? -ne 0 ]; then
-            echo "❌ ERROR: Failed to update JSON file using jq!"
+            echo "❌ ERROR: jq failed to update JSON!"
             exit 1
           fi
 
@@ -75,7 +81,6 @@ jobs:
 
           echo "After Update:"
           cat "$ACTIVITIES_FILE" || echo "❌ File is empty after update!"
-
 
 
       - name: Set up Python
