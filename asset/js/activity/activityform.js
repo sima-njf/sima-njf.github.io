@@ -1,6 +1,6 @@
 document.getElementById('activity-form').addEventListener('submit', async function (event) {
-  event.preventDefault();
-  console.log("Form submitted!");
+  event.preventDefault(); // Prevent page refresh
+  console.log("Form submitted!"); // Debugging log
 
   const title = document.getElementById('title').value;
   const image = document.getElementById('image').value;
@@ -12,9 +12,31 @@ document.getElementById('activity-form').addEventListener('submit', async functi
   console.log("Description:", description);
   console.log("Link:", link);
 
-  // Create a discussion post instead of an issue
-  const discussionURL = `https://github.com/sima-njf/sima-njf.github.io/discussions/new?category=activities&title=${encodeURIComponent(title)}&body=${encodeURIComponent(`**Image:** ${image}\n\n**Description:** ${description}\n\n**Link:** ${link}`)}`;
+  const issueData = {
+    title: title,
+    body: `**Image:** ${image}\n\n**Description:** ${description}\n\n**Link:** ${link}`
+  };
 
-  // Redirect user to GitHub discussions
-  window.open(discussionURL, '_blank');
+  try {
+    const response = await fetch('https://github-issue-worker.mjpouromid2.workers.dev', { // Replace with your worker URL
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(issueData)
+    });
+
+    const responseData = await response.json();
+    console.log("GitHub API Response:", responseData); // Log API response for debugging
+
+    if (response.ok) {
+      alert('Activity submitted successfully!');
+      document.getElementById('activity-form').reset();
+    } else {
+      alert(`Failed to submit activity: ${responseData.message}`);
+    }
+  } catch (error) {
+    console.error('Error submitting activity:', error);
+    alert('An error occurred. Check the console for details.');
+  }
 });
