@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Parse Issue Data (Only If Issue Triggered)
+            - name: Parse Issue Data (Only If Issue Triggered)
         if: github.event_name == 'issues'
         run: |
           ISSUE_TITLE=$(jq --raw-output '.issue.title' "$GITHUB_EVENT_PATH")
@@ -23,7 +23,7 @@ jobs:
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
           IMAGE_URL=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Image:\*\* //p' | head -n 1)
-          DESCRIPTION=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Description:\*\* //p' | tr '\n' '⏎')
+          DESCRIPTION=$(echo "$ISSUE_BODY" | awk 'BEGIN {RS="**Description:** "} NR>1 {print; exit}')
           LINK=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Link:\*\* //p' | head -n 1)
 
           echo "Extracted Values:"
@@ -36,7 +36,7 @@ jobs:
           # ✅ Store values in GitHub Environment Variables
           echo "ACTIVITY_TITLE=$ISSUE_TITLE" >> $GITHUB_ENV
           echo "ACTIVITY_IMAGE=$IMAGE_URL" >> $GITHUB_ENV
-          echo "ACTIVITY_DESCRIPTION=$DESCRIPTION" >> $GITHUB_ENV
+          echo "ACTIVITY_DESCRIPTION=$(echo "$DESCRIPTION" | jq -Rsa .)" >> $GITHUB_ENV
           echo "ACTIVITY_LINK=$LINK" >> $GITHUB_ENV
           echo "ACTIVITY_TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
 
@@ -56,8 +56,8 @@ jobs:
           echo "Before Update:"
           cat "$ACTIVITIES_FILE" || echo "❌ File is empty"
 
-          # ✅ Convert "⏎" back to actual newlines before inserting JSON
-          CLEAN_DESCRIPTION=$(echo "$ACTIVITY_DESCRIPTION" | tr '⏎' '\n')
+          # ✅ Convert JSON-safe `DESCRIPTION` back to normal
+          CLEAN_DESCRIPTION=$(echo "$ACTIVITY_DESCRIPTION" | jq -r .)
 
           echo "🚀 Running jq update..."
           jq --arg title "$ACTIVITY_TITLE" \
