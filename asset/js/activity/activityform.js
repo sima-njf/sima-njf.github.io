@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
       title: title,
       body: `**Image:** ${image}\n\n**Description:** ${description}\n\n**Link:** ${link}`
     };
-
+    console.log(issueData);
     try {
-      console.log("🚀 Sending POST request to Cloudflare Worker...");
+      console.log(JSON.stringify(issueData));
       const response = await fetch("https://github-issue-worker.mjpouromid2.workers.dev/", { // Replace with your Worker URL
         method: "POST",
         headers: {
