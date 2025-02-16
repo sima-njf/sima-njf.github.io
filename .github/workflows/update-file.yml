@@ -23,13 +23,13 @@ jobs:
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
           IMAGE_URL=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Image:\*\* //p' | head -n 1)
-          DESCRIPTION=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Description:\*\* //p')
+          DESCRIPTION=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Description:\*\* //p' | awk '{printf "%s\\n", $0}')
           LINK=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Link:\*\* //p' | head -n 1)
 
           echo "Extracted Values:"
           echo "Title: $ISSUE_TITLE"
           echo "Image: $IMAGE_URL"
-          echo "Description: $DESCRIPTION"
+          echo -e "Description:\n$DESCRIPTION"
           echo "Link: $LINK"
           echo "Timestamp: $TIMESTAMP"
 
@@ -42,12 +42,10 @@ jobs:
       - name: Update Activities File (Only If Issue Triggered)
         if: github.event_name == 'issues'
         run: |
-          ACTIVITIES_FILE="asset/data/activities.json"  # ✅ Correct file path
+          ACTIVITIES_FILE="asset/data/activities.json"
 
-          # ✅ Ensure file exists before modifying
-          if [ ! -f "$ACTIVITIES_FILE" ]; then
-            echo "❌ ERROR: activities.json not found!"
-            exit 1
+          if [ ! -f "$ACTIVITIES_FILE" ] || [ ! -s "$ACTIVITIES_FILE" ]; then
+            echo '{"activities": []}' > "$ACTIVITIES_FILE"
           fi
 
           echo "✅ File exists: $ACTIVITIES_FILE"
@@ -57,13 +55,6 @@ jobs:
           echo "Before Update:"
           cat "$ACTIVITIES_FILE" || echo "❌ File is empty"
 
-          # ✅ Initialize JSON if the file is empty
-          if [ ! -s "$ACTIVITIES_FILE" ]; then
-            echo '{"activities": []}' > "$ACTIVITIES_FILE"
-            echo "✅ Initialized empty JSON file!"
-          fi
-
-          # ✅ Debug `jq` Execution
           echo "🚀 Running jq update..."
           jq --arg title "$ACTIVITY_TITLE" \
              --arg image "$ACTIVITY_IMAGE" \
