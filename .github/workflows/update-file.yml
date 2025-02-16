@@ -34,9 +34,10 @@ jobs:
           ISSUE_BODY=$(jq --raw-output '.issue.body' "$GITHUB_EVENT_PATH")
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-          IMAGE_URL=$(echo "$ISSUE_BODY" | awk -F"\\*\\*Image:\\*\\* " '{print $2}' | head -n 1)
-          DESCRIPTION=$(echo "$ISSUE_BODY" | awk -F"\\*\\*Description:\\*\\* " '{print $2}' | head -n 1)
-          LINK=$(echo "$ISSUE_BODY" | awk -F"\\*\\*Link:\\*\\* " '{print $2}' | head -n 1)
+          # Extract values using sed
+          IMAGE_URL=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Image:\*\* //p' | head -n 1)
+          DESCRIPTION=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Description:\*\* //p')
+          LINK=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Link:\*\* //p' | head -n 1)
 
           # 🔹 Debugging: Print Extracted Values
           echo "Extracted Values:"
@@ -51,6 +52,7 @@ jobs:
           echo "ACTIVITY_DESCRIPTION=$DESCRIPTION" >> $GITHUB_ENV
           echo "ACTIVITY_LINK=$LINK" >> $GITHUB_ENV
           echo "ACTIVITY_TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
+
 
       # 🔹 Update Activities JSON File
       - name: Update Activities File (Only If Issue Triggered)
