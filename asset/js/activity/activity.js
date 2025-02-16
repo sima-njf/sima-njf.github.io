@@ -22,16 +22,7 @@ fetch('/asset/data/activities.json')
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.text(); // Read response as text first for debugging
-    })
-    .then(text => {
-        console.log("🔍 Raw JSON content:", text); // Log raw JSON content
-
-        if (!text.trim()) {
-            throw new Error("❌ JSON file is empty!");
-        }
-
-        return JSON.parse(text); // Convert to JSON
+        return response.json();
     })
     .then(data => {
         console.log("✅ Parsed JSON data:", data);
@@ -44,8 +35,9 @@ fetch('/asset/data/activities.json')
         const template = document.getElementById('activity-template');
 
         data.activities.forEach(activity => {
-            const activityDiv = template.cloneNode(true);
-            activityDiv.style.display = 'block';
+            const activityDiv = template.cloneNode(true); // ✅ Clone template
+            activityDiv.id = ""; // ✅ Remove ID to prevent duplicates
+            activityDiv.style.display = 'flex'; // ✅ Ensure it's visible
 
             activityDiv.querySelector('.activity-container-content-holder-academic-container-each-img').src = activity.image;
             activityDiv.querySelector('.activity-container-content-holder-academic-container-each-img').alt = activity.title;
@@ -53,13 +45,14 @@ fetch('/asset/data/activities.json')
             activityDiv.querySelector('.activity-container-content-holder-academic-container-each-p').textContent = activity.description;
             activityDiv.querySelector('.activity-container-content-holder-academic-container-each-a').href = activity.link;
 
-            // Format and display timestamp
+            // ✅ Format and display timestamp
             const timestampElement = activityDiv.querySelector('.activity-timestamp');
             const formattedDate = new Date(activity.timestamp).toLocaleString();
             timestampElement.textContent = `Posted on: ${formattedDate}`;
 
-            container.appendChild(activityDiv);
+            container.appendChild(activityDiv); // ✅ Append to container
         });
     })
     .catch(error => console.error('❌ Error fetching activities:', error));
+
 
