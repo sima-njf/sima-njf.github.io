@@ -1,44 +1,53 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const lazyImages = document.querySelectorAll("img.lazy");
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.getAttribute("data-src");
-                img.removeAttribute("data-src");
-                img.classList.remove("lazy");
-                observer.unobserve(img);
-            }
+    const form = document.getElementById("activity-form");
+  
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      event.stopPropagation(); // Ensure no default action occurs
+  
+      console.log("✅ Form submission started");
+  
+      const title = document.getElementById("title").value;
+      const image = document.getElementById("image").value;
+      const description = document.getElementById("description").value;
+      const link = document.getElementById("link").value;
+  
+      console.log("📌 Title:", title);
+      console.log("📌 Image URL:", image);
+      console.log("📌 Description:", description);
+      console.log("📌 Link:", link);
+  
+      const issueData = {
+        title: title,
+        body: `**Image:** ${image}\n\n**Description:** ${description}\n\n**Link:** ${link}`
+      };
+  
+      try {
+        console.log("🚀 Sending POST request to GitHub Issues API...");
+        const response = await fetch("https://api.github.com/repos/sima-njf/sima-njf.github.io/issues", {
+          method: "POST",
+          headers: {
+            "Accept": "application/vnd.github.v3+json",
+            "Content-Type": "application/json",
+            "Authorization": `token PERSONAL_ACCESS_TOKEN` // Replace this with the actual token value
+          },
+          body: JSON.stringify(issueData)
         });
+  
+        console.log("🔄 Waiting for response...");
+        const responseData = await response.json();
+        console.log("✅ GitHub API Response:", responseData);
+  
+        if (response.ok) {
+          alert("🎉 Activity submitted successfully!");
+          form.reset();
+        } else {
+          alert(`⚠️ Failed to submit activity: ${responseData.message}`);
+        }
+      } catch (error) {
+        console.error("❌ Error submitting activity:", error);
+        alert("❌ An error occurred. Check the console for details.");
+      }
     });
-
-    lazyImages.forEach(img => {
-        imageObserver.observe(img);
-    });
-});
-
-fetch('/asset/data/activities.json')
-    .then(response => response.json())
-    .then(data => {
-        const container = document.getElementById('activities-container');
-        const template = document.getElementById('activity-template');
-
-        data.activities.forEach(activity => {
-            const activityDiv = template.cloneNode(true);
-            activityDiv.style.display = 'block';
-
-            activityDiv.querySelector('.activity-container-content-holder-academic-container-each-img').src = activity.image;
-            activityDiv.querySelector('.activity-container-content-holder-academic-container-each-img').alt = activity.title;
-            activityDiv.querySelector('.activity-container-content-holder-academic-container-each-strong').textContent = activity.title;
-            activityDiv.querySelector('.activity-container-content-holder-academic-container-each-p').textContent = activity.description;
-            activityDiv.querySelector('.activity-container-content-holder-academic-container-each-a').href = activity.link;
-
-            // Format and display timestamp
-            const timestampElement = activityDiv.querySelector('.activity-timestamp');
-            const formattedDate = new Date(activity.timestamp).toLocaleString();
-            timestampElement.textContent = `Posted on: ${formattedDate}`;
-
-            container.appendChild(activityDiv);
-        });
-    })
-    .catch(error => console.error('Error fetching activities:', error));
+  });
+  
