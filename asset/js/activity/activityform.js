@@ -16,7 +16,8 @@ document.getElementById('activity-form').addEventListener('submit', async functi
       method: 'POST',
       headers: {
         'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `token ${PERSONAL_ACCESS_TOKEN}` // 🔹 ADD THIS
       },
       body: JSON.stringify(issueData)
     });
