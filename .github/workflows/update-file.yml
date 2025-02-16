@@ -1,28 +1,33 @@
-name: Add New Activity
+name: Update Site Content
 
 on:
   issues:
     types: [opened]
+  push:
+    branches:
+      - main  # Run when `main` is updated
 
 jobs:
-  add-activity:
+  update-site:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Check Issue Creator
+      # 🔹 Only Update Activities If Triggered by an Issue
+      - name: Check Issue Creator (Only If Issue Triggered)
+        if: github.event_name == 'issues'
         run: |
           AUTHOR=$(jq --raw-output '.issue.user.login' "$GITHUB_EVENT_PATH")
           ALLOWED_USER="sima-njf"
-
           if [ "$AUTHOR" != "$ALLOWED_USER" ]; then
             echo "Issue not created by authorized user. Skipping..."
             exit 0
           fi
 
-      - name: Parse Issue Data
+      - name: Parse Issue Data (Only If Issue Triggered)
+        if: github.event_name == 'issues'
         run: |
           ISSUE_TITLE=$(jq --raw-output '.issue.title' "$GITHUB_EVENT_PATH")
           ISSUE_BODY=$(jq --raw-output '.issue.body' "$GITHUB_EVENT_PATH")
@@ -38,10 +43,10 @@ jobs:
           echo "ACTIVITY_LINK=$LINK" >> $GITHUB_ENV
           echo "ACTIVITY_TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
 
-      - name: Update Activities File
+      - name: Update Activities File (Only If Issue Triggered)
+        if: github.event_name == 'issues'
         run: |
           ACTIVITIES_FILE="asset/data/activities.json"
-          
           if [ ! -f "$ACTIVITIES_FILE" ]; then
             echo '{"activities": []}' > "$ACTIVITIES_FILE"
           fi
@@ -53,17 +58,26 @@ jobs:
              --arg timestamp "$ACTIVITY_TIMESTAMP" \
              '.activities += [{"title": $title, "image": $image, "description": $description, "link": $link, "timestamp": $timestamp}]' "$ACTIVITIES_FILE" > temp.json && mv temp.json "$ACTIVITIES_FILE"
 
-      - name: Commit and Push Changes to `update-activities` Branch
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git checkout -b update-activities-${{ github.run_id }}
-          git add asset/data/activities.json
-          git commit -m "Add new activity: $ACTIVITY_TITLE"
-          git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/sima-njf/sima-njf.github.io.git update-activities-${{ github.run_id }}
+      # 🔹 Always Run Sitemap Update on Push to Main
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-      - name: Create Pull Request
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Set GH_TOKEN for GitHub CLI
+      - name: Install dependencies
         run: |
-          gh pr create --base main --head update-activities-${{ github.run_id }} --title "Add new activity: $ACTIVITY_TITLE" --body "Automatically generated activity update."
+          python -m pip install --upgrade pip
+
+      - name: Generate Sitemap
+        run: python generate_sitemap.py
+
+      # 🔹 Commit and Push Both Activities & Sitemap Updates
+      - name: Commit and Push Changes to Main (With Skip CI)
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add asset/data/activities.json sitemap.xml
+          git commit -m "Update site content [skip ci]" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/sima-njf/sima-njf.github.io.git main
