@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
-    event.stopPropagation(); // Ensure no default action occurs
+    event.stopPropagation(); 
 
     console.log("✅ Form submission started");
 
@@ -23,20 +23,18 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     try {
-      console.log("🚀 Sending POST request to GitHub Issues API...");
-      const response = await fetch("https://api.github.com/repos/sima-njf/sima-njf.github.io/issues", {
+      console.log("🚀 Sending POST request to Cloudflare Worker...");
+      const response = await fetch("https://github-issue-worker.mjpouromid2.workers.dev/", { // Replace with your Worker URL
         method: "POST",
         headers: {
-          "Accept": "application/vnd.github.v3+json",
-          "Content-Type": "application/json",
-          "Authorization": `token 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` // Replace this with the actual token value
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(issueData)
       });
 
       console.log("🔄 Waiting for response...");
       const responseData = await response.json();
-      console.log("✅ GitHub API Response:", responseData);
+      console.log("✅ Cloudflare Worker Response:", responseData);
 
       if (response.ok) {
         alert("🎉 Activity submitted successfully!");
