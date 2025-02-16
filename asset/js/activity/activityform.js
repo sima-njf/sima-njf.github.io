@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: {
           "Accept": "application/vnd.github.v3+json",
           "Content-Type": "application/json",
-          "Authorization": `token PERSONAL_ACCESS_TOKEN` // Replace this with the actual token value
+          "Authorization": `token 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` // Replace this with the actual token value
         },
         body: JSON.stringify(issueData)
       });
