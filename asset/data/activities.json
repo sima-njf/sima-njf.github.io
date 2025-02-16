@@ -1,25 +1,5 @@
 {
   "activities": [
-    {
-      "title": "Data Science Symposium today",
-      "image": "https://pbs.twimg.com/media/GbUd4hhasAMwmcH?format=jpg&name=small",
-      "description": "We're representing #biostatselevated at #OneU ",
-      "link": "https://x.com/UofUBiostats/status/1852420307304493519",
-      "timestamp": "2025-02-16T20:42:34Z"
-    },
-    {
-      "title": "Science Symposium today",
-      "image": "https://pbs.twimg.com/media/GbUd4hhasAMwmcH?format=jpg&name=small",
-      "description": "We're representing #biostatselevated at #OneU \\n",
-      "link": "https://x.com/UofUBiostats/status/1852420307304493519",
-      "timestamp": "2025-02-16T20:49:32Z"
-    },
-    {
-      "title": "Data Science Symposium today",
-      "image": "https://pbs.twimg.com/media/GbUd4hhasAMwmcH?format=jpg&name=small",
-      "description": "We're representing #biostatselevated at #OneU �",
-      "link": "https://x.com/UofUBiostats/status/1852420307304493519",
-      "timestamp": "2025-02-16T20:54:41Z"
-    }
+    
   ]
 }

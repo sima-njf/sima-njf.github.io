@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-            - name: Parse Issue Data (Only If Issue Triggered)
+      - name: Parse Issue Data (Only If Issue Triggered)
         if: github.event_name == 'issues'
         run: |
           ISSUE_TITLE=$(jq --raw-output '.issue.title' "$GITHUB_EVENT_PATH")
