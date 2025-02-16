@@ -1,0 +1,64 @@
+name: Add New Activity
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add-activity:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Check Issue Creator
+        run: |
+          AUTHOR=$(jq --raw-output '.issue.user.login' "$GITHUB_EVENT_PATH")
+          ALLOWED_USER="sima-njf"
+
+          if [ "$AUTHOR" != "$ALLOWED_USER" ]; then
+            echo "Issue not created by authorized user. Skipping..."
+            exit 0
+          fi
+
+      - name: Parse Issue Data
+        run: |
+          ISSUE_TITLE=$(jq --raw-output '.issue.title' "$GITHUB_EVENT_PATH")
+          ISSUE_BODY=$(jq --raw-output '.issue.body' "$GITHUB_EVENT_PATH")
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          IMAGE_URL=$(echo "$ISSUE_BODY" | grep -oP '(?<=\*\*Image:\*\* ).*')
+          DESCRIPTION=$(echo "$ISSUE_BODY" | grep -oP '(?<=\*\*Description:\*\* ).*')
+          LINK=$(echo "$ISSUE_BODY" | grep -oP '(?<=\*\*Link:\*\* ).*')
+
+          echo "ACTIVITY_TITLE=$ISSUE_TITLE" >> $GITHUB_ENV
+          echo "ACTIVITY_IMAGE=$IMAGE_URL" >> $GITHUB_ENV
+          echo "ACTIVITY_DESCRIPTION=$DESCRIPTION" >> $GITHUB_ENV
+          echo "ACTIVITY_LINK=$LINK" >> $GITHUB_ENV
+          echo "ACTIVITY_TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
+
+      - name: Update Activities File
+        run: |
+          ACTIVITIES_FILE="asset/data/activities.json"
+          
+          if [ ! -f "$ACTIVITIES_FILE" ]; then
+            echo '{"activities": []}' > "$ACTIVITIES_FILE"
+          fi
+          
+          jq --arg title "$ACTIVITY_TITLE" \
+             --arg image "$ACTIVITY_IMAGE" \
+             --arg description "$ACTIVITY_DESCRIPTION" \
+             --arg link "$ACTIVITY_LINK" \
+             --arg timestamp "$ACTIVITY_TIMESTAMP" \
+             '.activities += [{"title": $title, "image": $image, "description": $description, "link": $link, "timestamp": $timestamp}]' "$ACTIVITIES_FILE" > temp.json && mv temp.json "$ACTIVITIES_FILE"
+
+      - name: Commit Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add asset/data/activities.json
+          git commit -m "Add new activity: $ACTIVITY_TITLE"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

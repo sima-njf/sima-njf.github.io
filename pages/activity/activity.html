@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta
+      name="description"
+      content="This page is dedicated to showcasing both my academic and non-academic activities."
+    />
+
+    <meta name="keywords" content="Sima Najafzadeh Khoei, Sima Khoei, Academic Activities, Non-Academic Activities" />
+    <meta property="og:image" content="/asset/images/profile.webp" />
+    <meta property="og:image:alt" content="Sima Najafzadeh Khoei Activities" />
+    <meta property="og:title" content="Sima Najafzadeh Khoei Activities" />
+    <meta property="og:url" content="https://sima-njf.github.io/activity.html" />
+    <meta property="og:description" content="This page is dedicated to showcasing both my academic and non-academic activities." />
+    <meta property="og:type" content="website" />
+    <meta name="author" content="Sima Najafzadeh Khoei" />
+    <meta name="publisher" content="Sima Najafzadeh Khoei" />
+    <link rel="canonical" href="https://sima-njf.github.io/activity.html" />
+    <link rel="icon" href="/avatar-ico.ico" type="image/x-icon">
+    <link rel="icon" href="/fav-ico.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/fav-ico.png">
+
+    <title>Sima Khoei Activities</title>
+    <link rel="stylesheet" href="/asset/css/app.css">
+    <link rel="stylesheet" href="/asset/css/activity/activity.css">
+    <link rel="stylesheet" href="/asset/css/pagesheader.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6DDEG362J3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-6DDEG362J3');
+    </script>
+</head>
+
+<body>
+  <div class = "activity-container">
+    <div class = "activity-container-content">
+      <div class="activity-container-content-pagesheader">
+        <div class="activity-container-content-pagesheader-right-icon">
+          <a class="activity-container-content-pagesheader-a" href="/index.html"><p>Home</p></a>
+        </div>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+          &#9776; 
+        </div>
+        <div class="activity-container-content-pagesheader-right-icons" id = "tab-side-menu">
+          <a class="activity-container-content-pagesheader-a" href="/index.html"><p>Projects</p></a>
+          <div class="activity-container-content-pagesheader-a-cooldivider"></div>
+          <a class="activity-container-content-pagesheader-a " href="/index.html"><p class="header-active">Activities</p></a>
+          <div class="activity-container-content-pagesheader-a-cooldivider"></div>
+          <a class="activity-container-content-pagesheader-a" href="/index.html"><p>Publications</p></a>
+          <div class="activity-container-content-pagesheader-a-cooldivider"></div>
+          <a class="activity-container-content-pagesheader-a" href="/index.html"><p>Honors</p></a>
+        </div>
+      </div>
+      <h1 class = "activity-container-content-h1">Activity Timeline</h1>
+
+      <div class = "activity-container-content-holder">
+        <div class = "activity-container-content-holder-filter">
+          <p class = "activity-container-content-holder-filter-title">filters:</p>
+          <p class = "activity-container-content-holder-filter-p active-filter">All</p>
+          <p class = "activity-container-content-holder-filter-p">Academic</p>
+          <p class = "activity-container-content-holder-filter-p">Non-academic</p>
+        </div>
+        <div class = "activity-container-content-holder-academic">
+          <h2 class = "activity-container-content-holder-academic-h2">Academic Activities:</h2>
+          
+          <div class = "activity-container-content-holder-academic-container-each" id="activity-template" style="display: none;">
+            <img class = "activity-container-content-holder-academic-container-each-img lazy" width ="auto" height="150px" data-src="/asset/images/activity/ac01.jpg" alt="Profile Picture">
+            <strong class = "activity-container-content-holder-academic-container-each-strong"></strong>
+            <p class = "activity-container-content-holder-academic-container-each-p"></p>
+            <p class="activity-timestamp"></p>
+            <a class = "activity-container-content-holder-academic-container-each-a" target = "blank">Link</a>
+          </div>
+          <div class = "activity-container-content-holder-academic-container" id="activities-container">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="/asset/js/activity/activity.js"></script>
+  <script src="/index.js"></script>
+</body>
+
+
+</html>

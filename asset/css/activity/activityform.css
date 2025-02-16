@@ -1,0 +1,24 @@
+.activity-form {
+      max-width: 500px;
+      margin: auto;
+    }
+.activity-form-label {
+    display: block;
+    margin-top: 10px;
+}
+.activity-form-input, .activity-form-textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+.activity-form-button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.activity-form-button:hover {
+    background-color: #0056b3;
+}

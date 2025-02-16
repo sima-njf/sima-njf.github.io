@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Activity Form</title>
+
+  <link rel="stylesheet" href="/asset/css/app.css">
+  <link rel="stylesheet" href="/asset/css/activity/activityform.css">
+  <link rel="stylesheet" href="/asset/css/pagesheader.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <h1>Submit a New Activity</h1>
+  <form class="activity-form" id="activity-form">
+    <label class="activity-form-label" for="image">Image URL:</label>
+    <input class="activity-form-input" type="url" id="image" name="image" placeholder="Upload to Imgur and paste the URL here" required>
+
+    <label class="activity-form-label" for="title">Title:</label>
+    <input class="activity-form-input" type="text" id="title" name="title" required>
+
+    <label class="activity-form-label" for="description">Description:</label>
+    <textarea id="description" name="description" rows="4" required></textarea>
+
+    <label class="activity-form-label" for="link">Link:</label>
+    <input class="activity-form-input" type="url" id="link" name="link" required>
+
+    <button class="activity-form-button" type="submit">Submit</button>
+  </form>
+</body>
+
+</html>
