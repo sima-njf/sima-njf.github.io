@@ -76,7 +76,7 @@ function matchHeight() {
     const PictureContainer = document.querySelector('.picture-container');
     if (headerContainer) {
         headerContainer.style.height = finalHeight + 'px';
-        PictureContainer.style.height = finalHeight + 'px';
+        // PictureContainer.style.height = finalHeight + 'px';
     }
 
 
