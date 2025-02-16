@@ -1,6 +1,6 @@
 document.getElementById('activity-form').addEventListener('submit', async function (event) {
   event.preventDefault(); // Prevent page refresh
-  console.log("✅ Form submission started"); // Debugging log
+  console.log("✅ Form submission started");
 
   const title = document.getElementById('title').value;
   const image = document.getElementById('image').value;
@@ -18,8 +18,8 @@ document.getElementById('activity-form').addEventListener('submit', async functi
   };
 
   try {
-    console.log("🚀 Sending request to Cloudflare Worker...");
-    const response = await fetch('https://github-issue-worker.mjpouromid2.workers.dev', { // Replace with your worker URL
+    console.log("🚀 Sending POST request to Cloudflare Worker...");
+    const response = await fetch('https://github-issue-worker.mjpouromid2.workers.dev', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -27,9 +27,9 @@ document.getElementById('activity-form').addEventListener('submit', async functi
       body: JSON.stringify(issueData)
     });
 
-    console.log("🔄 Waiting for Cloudflare Worker response...");
+    console.log("🔄 Waiting for response...");
     const responseData = await response.json();
-    console.log("✅ GitHub API Response:", responseData); // Log API response for debugging
+    console.log("✅ Cloudflare Worker Response:", responseData);
 
     if (response.ok) {
       alert('🎉 Activity submitted successfully!');
