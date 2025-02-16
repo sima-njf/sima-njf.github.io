@@ -5,7 +5,7 @@ on:
     types: [opened]
   push:
     branches:
-      - main  # Run when `main` is updated
+      - main
 
 jobs:
   update-site:
@@ -15,18 +15,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # 🔹 Only Update Activities If Triggered by an Issue
-      - name: Check Issue Creator (Only If Issue Triggered)
-        if: github.event_name == 'issues'
-        run: |
-          AUTHOR=$(jq --raw-output '.issue.user.login' "$GITHUB_EVENT_PATH")
-          ALLOWED_USER="sima-njf"
-          if [ "$AUTHOR" != "$ALLOWED_USER" ]; then
-            echo "Issue not created by authorized user. Skipping..."
-            exit 0
-          fi
-
-      # 🔹 Parse Issue Data
       - name: Parse Issue Data (Only If Issue Triggered)
         if: github.event_name == 'issues'
         run: |
@@ -34,12 +22,10 @@ jobs:
           ISSUE_BODY=$(jq --raw-output '.issue.body' "$GITHUB_EVENT_PATH")
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-          # Extract values using sed
           IMAGE_URL=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Image:\*\* //p' | head -n 1)
           DESCRIPTION=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Description:\*\* //p')
           LINK=$(echo "$ISSUE_BODY" | sed -n 's/\*\*Link:\*\* //p' | head -n 1)
 
-          # 🔹 Debugging: Print Extracted Values
           echo "Extracted Values:"
           echo "Title: $ISSUE_TITLE"
           echo "Image: $IMAGE_URL"
@@ -53,8 +39,6 @@ jobs:
           echo "ACTIVITY_LINK=$LINK" >> $GITHUB_ENV
           echo "ACTIVITY_TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
 
-
-      # 🔹 Update Activities JSON File
       - name: Update Activities File (Only If Issue Triggered)
         if: github.event_name == 'issues'
         run: |
@@ -71,12 +55,19 @@ jobs:
              --arg description "$ACTIVITY_DESCRIPTION" \
              --arg link "$ACTIVITY_LINK" \
              --arg timestamp "$ACTIVITY_TIMESTAMP" \
-             '.activities += [{"title": $title, "image": $image, "description": $description, "link": $link, "timestamp": $timestamp}]' "$ACTIVITIES_FILE" > temp.json && mv temp.json "$ACTIVITIES_FILE"
+             '.activities += [{"title": $title, "image": $image, "description": $description, "link": $link, "timestamp": $timestamp}]' "$ACTIVITIES_FILE" > temp.json
+
+          # Debug if jq fails
+          if [ $? -ne 0 ]; then
+            echo "Error updating JSON file with jq"
+            exit 1
+          fi
+
+          mv temp.json "$ACTIVITIES_FILE"
 
           echo "After Update:"
           cat "$ACTIVITIES_FILE"
 
-      # 🔹 Always Run Sitemap Update on Push to Main
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -89,8 +80,7 @@ jobs:
       - name: Generate Sitemap
         run: python generate_sitemap.py
 
-      # 🔹 Commit and Push Both Activities & Sitemap Updates
-      - name: Commit and Push Changes to Main (With Debugging)
+      - name: Commit and Push Changes to Main
         env:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
@@ -98,11 +88,9 @@ jobs:
           git config --global user.name "GitHub Action"
           git add asset/data/activities.json sitemap.xml
           
-          # Debugging: Show Changes Before Committing
+          # Check if there are changes to commit
           git status
           
           git commit -m "Update site content" || echo "No changes to commit"
           
-          # Debugging: Attempt to Push and Handle Errors
-          echo "Attempting to push changes..."
           git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/sima-njf/sima-njf.github.io.git main || echo "Push failed!"
