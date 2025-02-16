@@ -42,14 +42,14 @@ jobs:
       - name: Update Activities File (Only If Issue Triggered)
         if: github.event_name == 'issues'
         run: |
-          ACTIVITIES_FILE="/asset/data/activities.json"
+          ACTIVITIES_FILE="asset/data/activities.json"  # ✅ Correct file path
 
-          # ✅ Ensure directory exists
-          mkdir -p $(dirname "$ACTIVITIES_FILE")
-
-          # ✅ Ensure file exists
-          if [ ! -f "$ACTIVITIES_FILE" ]; then
-            echo '{"activities": []}' > "$ACTIVITIES_FILE"
+          # ✅ Confirm file exists before modifying
+          if [ -f "$ACTIVITIES_FILE" ]; then
+            echo "✅ File exists: $ACTIVITIES_FILE"
+          else
+            echo "❌ ERROR: activities.json not found!"
+            exit 1
           fi
 
           echo "Checking File Status:"
@@ -58,7 +58,7 @@ jobs:
           echo "Before Update:"
           cat "$ACTIVITIES_FILE" || echo "File is empty"
 
-          # ✅ Ensure jq is modifying the file correctly
+          # ✅ Ensure jq correctly updates the JSON
           jq --arg title "$ACTIVITY_TITLE" \
              --arg image "$ACTIVITY_IMAGE" \
              --arg description "$ACTIVITY_DESCRIPTION" \
@@ -67,14 +67,15 @@ jobs:
              '.activities += [{"title": $title, "image": $image, "description": $description, "link": $link, "timestamp": $timestamp}]' "$ACTIVITIES_FILE" > temp.json
 
           if [ $? -ne 0 ]; then
-            echo "❌ Error updating JSON file with jq!"
+            echo "❌ ERROR: Failed to update JSON file using jq!"
             exit 1
           fi
 
           mv temp.json "$ACTIVITIES_FILE"
 
           echo "After Update:"
-          cat "$ACTIVITIES_FILE" || echo "File is empty after update!"
+          cat "$ACTIVITIES_FILE" || echo "❌ File is empty after update!"
+
 
 
       - name: Set up Python
