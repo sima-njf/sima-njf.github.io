@@ -79,5 +79,5 @@ jobs:
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
           git add asset/data/activities.json sitemap.xml
-          git commit -m "Update site content [skip ci]" || echo "No changes to commit"
+          git commit -m "Update site content" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/sima-njf/sima-njf.github.io.git main

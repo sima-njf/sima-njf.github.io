@@ -1,16 +1,16 @@
 document.getElementById('activity-form').addEventListener('submit', async function (event) {
   event.preventDefault(); // Prevent page refresh
-  console.log("Form submitted!"); // Debugging log
+  console.log("✅ Form submission started"); // Debugging log
 
   const title = document.getElementById('title').value;
   const image = document.getElementById('image').value;
   const description = document.getElementById('description').value;
   const link = document.getElementById('link').value;
 
-  console.log("Title:", title);
-  console.log("Image URL:", image);
-  console.log("Description:", description);
-  console.log("Link:", link);
+  console.log("📌 Title:", title);
+  console.log("📌 Image URL:", image);
+  console.log("📌 Description:", description);
+  console.log("📌 Link:", link);
 
   const issueData = {
     title: title,
@@ -18,6 +18,7 @@ document.getElementById('activity-form').addEventListener('submit', async functi
   };
 
   try {
+    console.log("🚀 Sending request to Cloudflare Worker...");
     const response = await fetch('https://github-issue-worker.mjpouromid2.workers.dev', { // Replace with your worker URL
       method: 'POST',
       headers: {
@@ -26,17 +27,18 @@ document.getElementById('activity-form').addEventListener('submit', async functi
       body: JSON.stringify(issueData)
     });
 
+    console.log("🔄 Waiting for Cloudflare Worker response...");
     const responseData = await response.json();
-    console.log("GitHub API Response:", responseData); // Log API response for debugging
+    console.log("✅ GitHub API Response:", responseData); // Log API response for debugging
 
     if (response.ok) {
-      alert('Activity submitted successfully!');
+      alert('🎉 Activity submitted successfully!');
       document.getElementById('activity-form').reset();
     } else {
-      alert(`Failed to submit activity: ${responseData.message}`);
+      alert(`⚠️ Failed to submit activity: ${responseData.message}`);
     }
   } catch (error) {
-    console.error('Error submitting activity:', error);
-    alert('An error occurred. Check the console for details.');
+    console.error('❌ Error submitting activity:', error);
+    alert('❌ An error occurred. Check the console for details.');
   }
 });
