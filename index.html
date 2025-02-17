@@ -206,20 +206,33 @@
 
     <script src="/index.js"></script>
     <script src="/asset/js/switch.js"></script>
-    <!-- Recaptcha v3 -->
 
+    <!-- Recaptcha v3 -->
     <script src="https://www.google.com/recaptcha/api.js?render=6LdIqtkqAAAAAIQdgIW5sfOa63MNtbs49AkfU8Tf"></script>
     <script>
-        grecaptcha.ready(function () {
-            grecaptcha.execute('6LdIqtkqAAAAAIQdgIW5sfOa63MNtbs49AkfU8Tf', {
-                    action: 'contact'
-                })
-                .then(function (token) {
-                    recaptchaResponse.value = token;
-                });
+        document.addEventListener("DOMContentLoaded", function () {
+            grecaptcha.ready(function () {
+                grecaptcha.execute('6LdIqtkqAAAAAIQdgIW5sfOa63MNtbs49AkfU8Tf', { action: 'contact' })
+                    .then(function (token) {
+                        const recaptchaInput = document.getElementById('recaptchaResponse');
+                        if (recaptchaInput) {
+                            recaptchaInput.value = token;
+                        } else {
+                            console.error("reCAPTCHA input field not found!");
+                        }
+                        if (recaptchaInput) {
+                            recaptchaInput.value = token;
+                        } else {
+                            console.error("reCAPTCHA input field not found!");
+                        }
+                    }).catch(function (error) {
+                        console.error("reCAPTCHA execution error:", error);
+                    });
+            });
         });
-        
     </script>
+
+    
 </body>
 
 </html>
