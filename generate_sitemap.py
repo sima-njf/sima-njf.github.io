@@ -13,9 +13,7 @@ EXCLUDED_FILES = {"404.html", "sitemap.xml", "pages/activity/activityform.html"}
 # Create XML Document
 doc = Document()
 
-# Ensure XML declaration is at the very top
-xml_declaration = '<?xml version="1.0" encoding="UTF-8"?>\n'
-
+# Create root <urlset> element
 urlset = doc.createElement("urlset")
 urlset.setAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9")
 doc.appendChild(urlset)
@@ -51,8 +49,8 @@ for root, dirs, files in os.walk("."):
             url_elem.appendChild(priority_elem)
             urlset.appendChild(url_elem)
 
-# Write to sitemap.xml (Ensure no blank lines before XML declaration)
+# Write to sitemap.xml (Properly Handling XML Declaration)
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-    f.write(xml_declaration + doc.toprettyxml(indent="  ").lstrip())
+    f.write(doc.toprettyxml(indent="  ", encoding="UTF-8").decode("utf-8"))
 
 print(f"Sitemap generated: {OUTPUT_FILE}")
