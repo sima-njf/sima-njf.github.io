@@ -152,7 +152,15 @@
                                 <input class = "contact-me-form-input" type="email" placeholder = "Your Email" name="email" required>
                             </div>
                             <textarea class = "contact-me-form-textare" name="message" placeholder = "Your Message" required></textarea>
-                            <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+                            
+                            <div class="captcha-container">
+                                <div class="captcha-box" id="captchaBoxTablet">
+                                    <div class="box"></div>
+                                    <i class="fa-solid fa-check tick" style="display: none;"></i>
+                                </div>
+                                <p id="captchaTextTablet">I'm Human</p>
+                            </div>
+
                             <button class = "contact-me-form-button" type="submit">Send</button>
                         </form>
                     </div>
@@ -193,7 +201,13 @@
                         </div>
                         <textarea class = "contact-me-form-textare" name="message" placeholder = "Your Message" required></textarea>
                         
-                        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+                        <div class="captcha-container">
+                            <div class="captcha-box" id="captchaBox">
+                                <div class="box"></div>
+                                <i class="fa-solid fa-check tick" style="display: none;"></i>
+                            </div>
+                            <p id="captchaText">I'm Human</p>
+                        </div>
                         
                         <button class = "contact-me-form-button" type="submit">Send</button>
                     </form>
@@ -206,32 +220,6 @@
 
     <script src="/index.js"></script>
     <script src="/asset/js/switch.js"></script>
-
-    <!-- Recaptcha v3 -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6LdIqtkqAAAAAIQdgIW5sfOa63MNtbs49AkfU8Tf"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            grecaptcha.ready(function () {
-                grecaptcha.execute('6LdIqtkqAAAAAIQdgIW5sfOa63MNtbs49AkfU8Tf', { action: 'contact' })
-                    .then(function (token) {
-                        const recaptchaInput = document.getElementById('recaptchaResponse');
-                        if (recaptchaInput) {
-                            recaptchaInput.value = token;
-                        } else {
-                            console.error("reCAPTCHA input field not found!");
-                        }
-                        if (recaptchaInput) {
-                            recaptchaInput.value = token;
-                        } else {
-                            console.error("reCAPTCHA input field not found!");
-                        }
-                    }).catch(function (error) {
-                        console.error("reCAPTCHA execution error:", error);
-                    });
-            });
-        });
-    </script>
-
     
 </body>
 

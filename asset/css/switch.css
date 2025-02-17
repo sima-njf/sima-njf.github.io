@@ -70,3 +70,56 @@ body.night-mode .moon-icon {
 }
 
 
+/* CAPTCHA Container */
+.captcha-container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+#captchaText{
+    font-size: 16px;
+    margin: 0px 10px;
+    color: var(--revhead);
+}
+
+/* CAPTCHA Box */
+.captcha-box {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Box Styling */
+.box {
+    width: 100%;
+    height: 100%;
+    background-color: var(--peste);
+    border: 2px dashed var(--revhead);
+    transition: background-color 0.3s ease;
+}
+
+/* Tick Mark Styling */
+.tick {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: var(--yufo);
+    display: none; /* Hidden initially */
+}
+
+/* Verified State */
+.captcha-box.verified .box {
+    background-color: var(--peste); /* Light green background */
+}
+
+.captcha-box.verified .tick {
+    display: block !important; /* Show the tick mark */
+}
