@@ -152,13 +152,7 @@
                                 <input class = "contact-me-form-input" type="email" placeholder = "Your Email" name="email" required>
                             </div>
                             <textarea class = "contact-me-form-textare" name="message" placeholder = "Your Message" required></textarea>
-                            <div class="captcha-container">
-                                <div class="captcha-box" id="captchaBoxTablet">
-                                    <div class="box"></div>
-                                    <i class="fa-solid fa-check tick" style="display: none;"></i>
-                                </div>
-                                <p id="captchaTextTablet">I'm Human</p>
-                            </div>
+                            
                             <button class = "contact-me-form-button" type="submit">Send</button>
                         </form>
                     </div>
@@ -191,18 +185,16 @@
                     <form class = "contact-me-form" action="https://api.web3forms.com/submit" method="POST">
                         <strong class = "contact-me-form-strong">Get In Touch!</strong>
                         <input type="hidden" name="access_key"  value="55be92c5-3395-4070-9e90-a4b4e2d6275a">
+                        <input type="hidden" name="redirect" value="/pages/success.html">
+
                         <div class = "contact-me-form-inputs">
                             <input class = "contact-me-form-input" type="text" name="name" placeholder = "Your Name" required>
                             <input class = "contact-me-form-input" type="email" placeholder = "Your Email" name="email" required>
                         </div>
                         <textarea class = "contact-me-form-textare" name="message" placeholder = "Your Message" required></textarea>
-                        <div class="captcha-container">
-                            <div class="captcha-box" id="captchaBox">
-                                <div class="box"></div>
-                                <i class="fa-solid fa-check tick" style="display: none;"></i>
-                            </div>
-                            <p id="captchaText">I'm Human</p>
-                        </div>
+                        
+                        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+                        
                         <button class = "contact-me-form-button" type="submit">Send</button>
                     </form>
                 </div>
@@ -214,6 +206,20 @@
 
     <script src="/index.js"></script>
     <script src="/asset/js/switch.js"></script>
+    <!-- Recaptcha v3 -->
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdIqtkqAAAAAIQdgIW5sfOa63MNtbs49AkfU8Tf"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LdIqtkqAAAAAIQdgIW5sfOa63MNtbs49AkfU8Tf', {
+                    action: 'contact'
+                })
+                .then(function (token) {
+                    recaptchaResponse.value = token;
+                });
+        });
+        
+    </script>
 </body>
 
 </html>

@@ -34,27 +34,3 @@ nightModeToggle.addEventListener('change', toggleNightMode);
 applyNightModeFromStorage();
 
 
-
-if (document.getElementById('captchaBox')){
-    const captchaBox = document.getElementById('captchaBox');
-
-    const captchaText = document.getElementById('captchaText');
-
-    captchaBox.addEventListener('click', function () {
-        captchaBox.classList.add('verified');
-
-        captchaText.textContent = 'Confirmed Human';
-    });
-}
-
-if (document.getElementById('captchaBoxTablet')){
-    const captchaBoxTablet = document.getElementById('captchaBoxTablet');
-
-    const captchaTextTablet = document.getElementById('captchaTextTablet');
-
-    captchaBoxTablet.addEventListener('click', function () {
-        captchaBoxTablet.classList.add('verified');
-
-        captchaTextTablet.textContent = 'Confirmed Human';
-    });
-}
