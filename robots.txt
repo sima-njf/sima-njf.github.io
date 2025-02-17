@@ -1,5 +1,4 @@
 User-agent: *
-
-Disallow: /activityform.html
 Disallow: /success.html
+
 Sitemap: https://sima-njf.github.io/sitemap.xml

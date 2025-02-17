@@ -1,31 +1,40 @@
-# sitemap generator
+# Sitemap Generator for GitHub Pages
 import os
 from datetime import datetime
 from xml.dom.minidom import Document
 
-base_url = "https://sima-njf.github.io"
-output_file = "sitemap.xml"
+# Base URL of the GitHub Pages site
+BASE_URL = "https://sima-njf.github.io"
+OUTPUT_FILE = "sitemap.xml"
 
 # List of files to exclude
-excluded_files = {"404.html", "pages/activity/activityform.html"}
+EXCLUDED_FILES = {"404.html", "sitemap.xml"}
 
+# Create XML Document
 doc = Document()
+doc.appendChild(doc.createProcessingInstruction('xml', 'version="1.0" encoding="UTF-8"'))
+
 urlset = doc.createElement("urlset")
 urlset.setAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9")
 doc.appendChild(urlset)
 
+# Walk through files and generate sitemap entries
 for root, dirs, files in os.walk("."):
     for file in files:
         if file.endswith(('.html', '.pdf')) and not file.startswith('.'):
             path = os.path.join(root, file).replace("./", "").replace("\\", "/")
-            
+
             # Skip excluded files
-            if path in excluded_files:
+            if path in EXCLUDED_FILES:
                 continue
 
-            url = f"{base_url}/{path}"
-            lastmod = datetime.fromtimestamp(os.path.getmtime(os.path.join(root, file))).strftime('%Y-%m-%dT%H:%M:%S+00:00')
+            # Generate absolute URL
+            url = f"{BASE_URL}/{path}".replace("/./", "/")
 
+            # Get last modified date (YYYY-MM-DD format)
+            lastmod = datetime.fromtimestamp(os.path.getmtime(os.path.join(root, file))).strftime('%Y-%m-%d')
+
+            # Create XML nodes
             url_elem = doc.createElement("url")
             loc_elem = doc.createElement("loc")
             loc_elem.appendChild(doc.createTextNode(url))
@@ -34,10 +43,14 @@ for root, dirs, files in os.walk("."):
             priority_elem = doc.createElement("priority")
             priority_elem.appendChild(doc.createTextNode("0.80"))
 
+            # Add nodes to URL element
             url_elem.appendChild(loc_elem)
             url_elem.appendChild(lastmod_elem)
             url_elem.appendChild(priority_elem)
             urlset.appendChild(url_elem)
 
-with open(output_file, "w", encoding="utf-8") as f:
+# Write to sitemap.xml
+with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     f.write(doc.toprettyxml(indent="  "))
+
+print(f"Sitemap generated: {OUTPUT_FILE}")
