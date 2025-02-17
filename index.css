@@ -328,6 +328,34 @@
     border-bottom-left-radius: 10px;
     z-index: 9;
 }
+.is-404-container{
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+} 
+.is-404-container-row-player{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}  
+.is-404-container-h1{
+    margin: 0;
+    color: var(--purple);
+    margin: 10px;
+    font-size: 30px;
+}
+.is-404-container-a{
+    padding: 10px 15px;
+    margin: 10px;
+    font-size: 20px;
+    background-color: var(--purple);
+    border-radius: 10px;
+    color: var(--sefid);
+}
 
 @media screen and (min-width: 1024px) and (max-width: 1300px) {
 
@@ -383,6 +411,9 @@
 
     header.expanded + .container .information-body {
         margin-left: 0; 
+    }
+    .is-404-container-h1{
+        font-size: 25px;
     }
 }
 
@@ -456,6 +487,17 @@
     .profile-card-education-logo{
         width: 100%;
         margin: 10px 0px;
+    }
+    .is-404-container-row-player{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .is-404-container-h1{
+        font-size: 18px;
+    }
+    .is-404-container-a{
+        font-size: 16px;
     }
 
     header.expanded + .container .information-body {

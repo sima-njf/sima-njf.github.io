@@ -18,41 +18,41 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 fetch('/asset/data/activities.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
         console.log("✅ Parsed JSON data:", data);
-
-        if (!data.activities || data.activities.length === 0) {
-            throw new Error("❌ No activities found in JSON!");
-        }
 
         const container = document.getElementById('activities-container');
         const template = document.getElementById('activity-template');
 
-        data.activities.forEach(activity => {
-            const activityDiv = template.cloneNode(true); // ✅ Clone template
-            activityDiv.id = ""; // ✅ Remove ID to prevent duplicates
-            activityDiv.style.display = 'flex'; // ✅ Ensure it's visible
+        // ✅ SORT THE DATA BASED ON TIMESTAMP (Latest first)
+        data.activities.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
+        data.activities.forEach(activity => {
+            const activityDiv = template.cloneNode(true);
+            activityDiv.id = "";
+            activityDiv.style.display = 'flex';
+
+            // FRONT SIDE (Image & Title)
             activityDiv.querySelector('.activity-container-content-holder-academic-container-each-img').src = activity.image;
             activityDiv.querySelector('.activity-container-content-holder-academic-container-each-img').alt = activity.title;
             activityDiv.querySelector('.activity-container-content-holder-academic-container-each-strong').textContent = activity.title;
+
+            // BACK SIDE (Description & Link)
             activityDiv.querySelector('.activity-container-content-holder-academic-container-each-p').textContent = activity.description;
             activityDiv.querySelector('.activity-container-content-holder-academic-container-each-a').href = activity.link;
 
-            // ✅ Format and display timestamp
+            // ✅ FORMAT DATE (YYYY-MM-DD) WITHOUT TIME
             const timestampElement = activityDiv.querySelector('.activity-timestamp');
-            const formattedDate = new Date(activity.timestamp).toLocaleString();
+            const formattedDate = new Date(activity.timestamp).toISOString().split('T')[0]; // Extract only date
             timestampElement.textContent = `Posted on: ${formattedDate}`;
 
-            container.appendChild(activityDiv); // ✅ Append to container
+            // ✅ ADD CLICK EVENT TO FLIP THE CARD
+            activityDiv.addEventListener("click", function () {
+                this.classList.toggle("flipped");
+            });
+
+            container.appendChild(activityDiv);
         });
     })
     .catch(error => console.error('❌ Error fetching activities:', error));
-
-

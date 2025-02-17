@@ -64,6 +64,7 @@
 
       <div class = "activity-container-content-holder">
         <div class = "activity-container-content-holder-filter">
+          <a href="/pages/activity/activityform.html"><i class="fa-solid fa-circle activity-container-content-holder-filter-a"></i></a>
           <p class = "activity-container-content-holder-filter-title">filters:</p>
           <p class = "activity-container-content-holder-filter-p active-filter">All</p>
           <p class = "activity-container-content-holder-filter-p">Academic</p>
@@ -72,12 +73,23 @@
         <div class = "activity-container-content-holder-academic">
           <h2 class = "activity-container-content-holder-academic-h2">Academic Activities:</h2>
           
-          <div class = "activity-container-content-holder-academic-container-each" id="activity-template" style="display: none;">
-            <img class = "activity-container-content-holder-academic-container-each-img lazy" width ="auto" height="150px" data-src="/asset/images/activity/ac01.jpg" alt="Profile Picture">
-            <strong class = "activity-container-content-holder-academic-container-each-strong"></strong>
-            <p class = "activity-container-content-holder-academic-container-each-p"></p>
-            <p class="activity-timestamp"></p>
-            <a class = "activity-container-content-holder-academic-container-each-a" target = "blank">Link</a>
+          <div class="activity-container-content-holder-academic-container-each flip-container" id="activity-template" style="display: none;">
+            <div class="activity-flipper">
+                <!-- FRONT SIDE -->
+                <div class="activity-front">
+                    <img class="activity-container-content-holder-academic-container-each-img lazy" data-src="/asset/images/activity/ac01.jpg" alt="Profile Picture">
+                    <div class="activity-container-content-holder-academic-container-each-strongholder">
+                      <strong class="activity-container-content-holder-academic-container-each-strong"></strong>
+                    </div>
+                </div>
+        
+                <!-- BACK SIDE -->
+                <div class="activity-back">
+                    <p class="activity-container-content-holder-academic-container-each-p"></p>
+                    <p class="activity-timestamp"></p>
+                    <p class="activity-container-content-holder-academic-container-each-pa"><a class="activity-container-content-holder-academic-container-each-a" target="blank">Link</a></p>
+                </div>
+            </div>
           </div>
           <div class = "activity-container-content-holder-academic-container" id="activities-container">
 
