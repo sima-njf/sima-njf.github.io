@@ -356,6 +356,9 @@
     border-radius: 10px;
     color: var(--sefid);
 }
+#recaptchaResponse{
+    margin: 10px 0px;
+}
 
 @media screen and (min-width: 1024px) and (max-width: 1300px) {
 
