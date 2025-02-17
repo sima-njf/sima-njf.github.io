@@ -1,13 +1,13 @@
-#sitemap generator
+# sitemap generator
 import os
 from datetime import datetime
 from xml.dom.minidom import Document
 
 base_url = "https://sima-njf.github.io"
-
-
 output_file = "sitemap.xml"
 
+# List of files to exclude
+excluded_files = {"404.html", "pages/activity/activityform.html"}
 
 doc = Document()
 urlset = doc.createElement("urlset")
@@ -17,8 +17,13 @@ doc.appendChild(urlset)
 for root, dirs, files in os.walk("."):
     for file in files:
         if file.endswith(('.html', '.pdf')) and not file.startswith('.'):
-            path = os.path.join(root, file).replace("./", "")
-            url = base_url + "/" + path.replace("\\", "/")  
+            path = os.path.join(root, file).replace("./", "").replace("\\", "/")
+            
+            # Skip excluded files
+            if path in excluded_files:
+                continue
+
+            url = f"{base_url}/{path}"
             lastmod = datetime.fromtimestamp(os.path.getmtime(os.path.join(root, file))).strftime('%Y-%m-%dT%H:%M:%S+00:00')
 
             url_elem = doc.createElement("url")
@@ -27,7 +32,7 @@ for root, dirs, files in os.walk("."):
             lastmod_elem = doc.createElement("lastmod")
             lastmod_elem.appendChild(doc.createTextNode(lastmod))
             priority_elem = doc.createElement("priority")
-            priority_elem.appendChild(doc.createTextNode("0.80"))  
+            priority_elem.appendChild(doc.createTextNode("0.80"))
 
             url_elem.appendChild(loc_elem)
             url_elem.appendChild(lastmod_elem)
