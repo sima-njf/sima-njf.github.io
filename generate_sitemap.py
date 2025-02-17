@@ -1,18 +1,20 @@
-# Sitemap Generator for GitHub Pages
+# Sitemap Generator for GitHub Pages (Fixed XML Declaration Issue)
 import os
 from datetime import datetime
 from xml.dom.minidom import Document
 
-# Base URL of the GitHub Pages site
+# Base URL of GitHub Pages site
 BASE_URL = "https://sima-njf.github.io"
 OUTPUT_FILE = "sitemap.xml"
 
 # List of files to exclude
-EXCLUDED_FILES = {"404.html", "sitemap.xml"}
+EXCLUDED_FILES = {"404.html", "sitemap.xml", "pages/activity/activityform.html"}
 
 # Create XML Document
 doc = Document()
-doc.appendChild(doc.createProcessingInstruction('xml', 'version="1.0" encoding="UTF-8"'))
+
+# Ensure XML declaration is at the very top
+xml_declaration = '<?xml version="1.0" encoding="UTF-8"?>\n'
 
 urlset = doc.createElement("urlset")
 urlset.setAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9")
@@ -49,8 +51,8 @@ for root, dirs, files in os.walk("."):
             url_elem.appendChild(priority_elem)
             urlset.appendChild(url_elem)
 
-# Write to sitemap.xml
+# Write to sitemap.xml (Ensure no blank lines before XML declaration)
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-    f.write(doc.toprettyxml(indent="  "))
+    f.write(xml_declaration + doc.toprettyxml(indent="  ").lstrip())
 
 print(f"Sitemap generated: {OUTPUT_FILE}")
