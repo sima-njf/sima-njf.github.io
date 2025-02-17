@@ -25,8 +25,16 @@ fetch('/asset/data/activities.json')
         const container = document.getElementById('activities-container');
         const template = document.getElementById('activity-template');
 
-        // ✅ SORT THE DATA BASED ON TIMESTAMP (Latest first)
-        data.activities.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        // ✅ SORT THE DATA BASED ON TIMESTAMP (Only if there are multiple activities)
+        if (data.activities.length > 1) {
+            data.activities.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        }
+
+        // ✅ CHECK IF THERE ARE ACTIVITIES TO DISPLAY
+        if (data.activities.length === 0) {
+            console.warn("⚠️ No activities found in the JSON file.");
+            return;
+        }
 
         data.activities.forEach(activity => {
             const activityDiv = template.cloneNode(true);
@@ -42,10 +50,9 @@ fetch('/asset/data/activities.json')
             activityDiv.querySelector('.activity-container-content-holder-academic-container-each-p').textContent = activity.description;
             activityDiv.querySelector('.activity-container-content-holder-academic-container-each-a').href = activity.link;
 
-            // ✅ FORMAT DATE (YYYY-MM-DD) WITHOUT TIME
+            // ✅ USE THE DATE FROM JSON WITHOUT MODIFYING IT
             const timestampElement = activityDiv.querySelector('.activity-timestamp');
-            const formattedDate = new Date(activity.timestamp).toISOString().split('T')[0]; // Extract only date
-            timestampElement.textContent = `Posted on: ${formattedDate}`;
+            timestampElement.textContent = `Posted on: ${activity.timestamp}`;
 
             // ✅ ADD CLICK EVENT TO FLIP THE CARD
             activityDiv.addEventListener("click", function () {

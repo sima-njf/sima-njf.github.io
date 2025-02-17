@@ -9,7 +9,11 @@
     --white: white;
     --black: #1a1a1a;
     --purple:#9d76ff;
-    --yufo : #15191d    ;
+    --yufo : #15191d;
+    --porange:#d45814;
+    --pblue:#1c39bb;
+    --prose:#d7456e;
+    --pgreen:#00a693;
 }
 body.night-mode {
     --revhead: white;

@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta
+      name="description"
+      content="This page is dedicated to showcasing my Projects."
+    />
+
+    <meta name="keywords" content="Sima Najafzadeh Khoei, Sima Khoei, Academic Projects, Non-Academic Projects" />
+    <meta property="og:image" content="/asset/images/profile.webp" />
+    <meta property="og:image:alt" content="Sima Najafzadeh Khoei Projects" />
+    <meta property="og:title" content="Sima Najafzadeh Khoei Projects" />
+    <meta property="og:url" content="https://sima-njf.github.io/pages/projects.html" />
+    <meta property="og:description" content="This page is dedicated to showcasing my Projects." />
+    <meta property="og:type" content="website" />
+    <meta name="author" content="Sima Najafzadeh Khoei" />
+    <meta name="publisher" content="Sima Najafzadeh Khoei" />
+    <link rel="canonical" href="https://sima-njf.github.io/pages/projects.html" />
+    <link rel="icon" href="/avatar-ico.ico" type="image/x-icon">
+    <link rel="icon" href="/fav-ico.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/fav-ico.png">
+
+    <title>Sima Khoei Projects</title>
+    <link rel="stylesheet" href="/asset/css/app.css">
+    <link rel="stylesheet" href="/asset/css/projects.css">
+    <link rel="stylesheet" href="/asset/css/pagesheader.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6DDEG362J3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-6DDEG362J3');
+    </script>
+</head>
+
+<body>
+  <div class = "activity-container">
+    <div class = "activity-container-content">
+        <div class="activity-container-content-pagesheader">
+            <div class="activity-container-content-pagesheader-right-icon">
+            <a class="activity-container-content-pagesheader-a" href="/index.html"><p>Home</p></a>
+            </div>
+            <div class="hamburger-menu" onclick="toggleMenu()">
+            &#9776; 
+            </div>
+            <div class="activity-container-content-pagesheader-right-icons" id = "tab-side-menu">
+                <a class="activity-container-content-pagesheader-a" href="/pages/projects.html"><p class="header-active">Projects</p></a>
+                <div class="activity-container-content-pagesheader-a-cooldivider"></div>
+                <a class="activity-container-content-pagesheader-a " href="/pages/activity.html"><p>Activities</p></a>
+                <div class="activity-container-content-pagesheader-a-cooldivider"></div>
+                <a class="activity-container-content-pagesheader-a" href="/pages/publications.html"><p>Publications</p></a>
+                <div class="activity-container-content-pagesheader-a-cooldivider"></div>
+                <a class="activity-container-content-pagesheader-a" href="/pages/honors.html"><p>Honors</p></a>
+            </div>
+        </div>
+        <h1 class = "project-h1-view">Academic Projects</h1>
+
+        <div class="filter-container">
+            <label for="year-filter">Filter by Year:</label>
+            <select id="year-filter">
+                <option value="all">Show All</option>
+            </select>
+        </div>
+
+        <div  id="projects-container"></div>
+        
+
+    </div>
+  </div>
+
+
+  <script src="/asset/js/projects.js"></script>
+  <script src="/index.js"></script>
+</body>
+
+
+</html>

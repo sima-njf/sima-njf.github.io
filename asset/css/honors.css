@@ -1,0 +1,110 @@
+.project-content{
+    width: 80%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items: flex-start;
+}
+#honors-container{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items:center;
+}
+.project-content-left{
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.project-content-right{
+    width: 90%;
+    padding: 10px;
+    border: dashed 2px var(--revhead);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.project-content-right a{
+    overflow-wrap:anywhere;
+}
+.project-content-left-circle{
+    width:25px;
+    height:25px;
+    border-radius: 50%;
+    background-color: var(--purple);
+}
+.project-content-left-vline {
+    width: 4px; /* Adjust the width to make it thinner */
+    background: var(--purple);
+}
+.project-content-p{
+    margin: 0;
+}
+
+
+
+/* Filter Container */
+.filter-container {
+    width: 80%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-container label {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--purple);
+}
+
+#year-filter {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 2px solid var(--purple);
+    border-radius: 8px;
+    background-color: white;
+    color: var(--purple);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#year-filter:hover {
+    background-color: var(--purple);
+    color: white;
+}
+
+
+
+
+@media screen and (max-width: 1000px){
+    .project-content-right strong{
+        font-size: 16px;
+    }
+    .project-content-right p{
+        font-size: 13px;
+    }
+    .project-content-right a{
+        font-size: 13px;
+    }
+    #honors-container{
+        width: 100%;
+    }
+    .project-content-left{
+        display: none;
+    }
+    .project-content-right{
+        margin: 0px 10px;
+    }
+    .honors-h1-view{
+        font-size: 20px;
+    }
+
+}

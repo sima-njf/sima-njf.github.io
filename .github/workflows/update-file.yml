@@ -1,8 +1,6 @@
 name: Update Site Content
 
 on:
-  issues:
-    types: [opened]
   push:
     branches:
       - main
