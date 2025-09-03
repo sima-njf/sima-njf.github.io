@@ -1,105 +1,52 @@
-<html lang="en">
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta
-      name="description"
-      content="This page is dedicated to showcasing both my academic and non-academic activities."
-    />
-
-    <meta name="keywords" content="Sima Najafzadeh Khoei, Sima Khoei, Academic Activities, Non-Academic Activities" />
-    <meta property="og:image" content="/asset/images/profile.webp" />
-    <meta property="og:image:alt" content="Sima Najafzadeh Khoei Activities" />
-    <meta property="og:title" content="Sima Najafzadeh Khoei Activities" />
-    <meta property="og:url" content="https://sima-njf.github.io/pages/activity.html" />
-    <meta property="og:description" content="This page is dedicated to showcasing both my academic and non-academic activities." />
-    <meta property="og:type" content="website" />
-    <meta name="author" content="Sima Najafzadeh Khoei" />
-    <meta name="publisher" content="Sima Najafzadeh Khoei" />
-    <link rel="canonical" href="https://sima-njf.github.io/pages/activity.html" />
-    <link rel="icon" href="/avatar-ico.ico" type="image/x-icon">
-    <link rel="icon" href="/fav-ico.png" type="image/png" sizes="32x32">
-    <link rel="apple-touch-icon" href="/fav-ico.png">
-
-    <title>Sima Khoei Activities</title>
-    <link rel="stylesheet" href="/asset/css/app.css">
-    <link rel="stylesheet" href="/asset/css/activity.css">
-    <link rel="stylesheet" href="/asset/css/pagesheader.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6DDEG362J3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-6DDEG362J3');
-    </script>
-</head>
-
-<body>
-  <div class = "activity-container">
-    <div class = "activity-container-content">
-      <div class="activity-container-content-pagesheader">
-        <div class="activity-container-content-pagesheader-right-icon">
-          <a class="activity-container-content-pagesheader-a" href="/index.html"><p>Home</p></a>
-        </div>
-        <div class="hamburger-menu" onclick="toggleMenu()">
-          &#9776; 
-        </div>
-        <div class="activity-container-content-pagesheader-right-icons" id = "tab-side-menu">
-          <a class="activity-container-content-pagesheader-a" href="/pages/projects.html"><p>Projects</p></a>
-          <div class="activity-container-content-pagesheader-a-cooldivider"></div>
-          <a class="activity-container-content-pagesheader-a " href="/pages/activity.html"><p class="header-active">Activities</p></a>
-          <div class="activity-container-content-pagesheader-a-cooldivider"></div>
-          <a class="activity-container-content-pagesheader-a" href="/pages/publications.html"><p>Publications</p></a>
-          <div class="activity-container-content-pagesheader-a-cooldivider"></div>
-          <a class="activity-container-content-pagesheader-a" href="/pages/honors.html"><p>Honors</p></a>
-        </div>
-      </div>
-      <h1 class = "activity-container-content-h1">Activity Timeline</h1>
-
-      <div class = "activity-container-content-holder">
-        <div class = "activity-container-content-holder-filter">
-          <p class = "activity-container-content-holder-filter-title">filters:</p>
-          <p class = "activity-container-content-holder-filter-p active-filter">All</p>
-          <p class = "activity-container-content-holder-filter-p">Academic</p>
-          <p class = "activity-container-content-holder-filter-p">Non-academic</p>
-        </div>
-        <div class = "activity-container-content-holder-academic">
-          <h2 class = "activity-container-content-holder-academic-h2">Academic Activities:</h2>
-          
-          <div class="activity-container-content-holder-academic-container-each flip-container" id="activity-template" style="display: none;">
-            <div class="activity-flipper">
-                <!-- FRONT SIDE -->
-                <div class="activity-front">
-                    <img class="activity-container-content-holder-academic-container-each-img lazy" data-src="/asset/images/activity/ac01.jpg" alt="Profile Picture">
-                    <div class="activity-container-content-holder-academic-container-each-strongholder">
-                      <strong class="activity-container-content-holder-academic-container-each-strong"></strong>
-                    </div>
-                </div>
-        
-                <!-- BACK SIDE -->
-                <div class="activity-back">
-                    <p class="activity-container-content-holder-academic-container-each-p"></p>
-                    <p class="activity-timestamp"></p>
-                    <p class="activity-container-content-holder-academic-container-each-pa"><a class="activity-container-content-holder-academic-container-each-a" target="blank">Link</a></p>
-                </div>
-            </div>
-          </div>
-          <div class = "activity-container-content-holder-academic-container" id="activities-container"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <script src="/asset/js/activity.js"></script>
-  <script src="/index.js"></script>
-</body>
-
-
-</html>
+const activities = [
+  {
+    title: "ENAR 2025 Spring Meeting (Attendee)",
+    category: "Academic",
+    date: "2025-03-23/2025-03-26",
+    place: "Sheraton New Orleans, LA",
+    img: "/asset/images/activity/enar-2025.jpg",
+    alt: "ENAR 2025 badge, March 23–26 in New Orleans",
+    blurb: "Attended the ENAR Spring Meeting focused on biostatistics and data science.",
+    link: "#"
+  },
+  {
+    title: "Teaching Assistant — Introduction to R",
+    category: "Academic",
+    date: "2025-07",
+    place: "",
+    img: "/asset/images/activity/intro-to-r.jpg",
+    alt: "TA for Introduction to R",
+    blurb: "TA for “Introduction to R,” taught by Dr. George Vega-Yon; supported lectures, labs, and mentoring.",
+    link: "#"
+  },
+  {
+    title: "Poster — Data Science Day, University of Utah",
+    category: "Academic",
+    date: "YYYY-MM-DD", // replace with exact date
+    place: "University of Utah",
+    img: "/asset/images/activity/utah-dsd.jpg",
+    alt: "Poster presentation at Data Science Day",
+    blurb: "Presented a research poster at Data Science Day highlighting ongoing work in population health/data science.",
+    link: "#"
+  },
+  {
+    title: "CDC MiND & HRre Program Meeting (Attendee)",
+    category: "Academic",
+    date: "2024-07-11/2024-07-12",
+    place: "Utah",
+    img: "/asset/images/activity/cdc-mind-hrre.jpg",
+    alt: "CDC MiND and HRre Program Meeting badge",
+    blurb: "Participated in the CDC MiND and HRre Program Meeting.",
+    link: "#"
+  },
+  {
+    title: "Delphi Data Science Initiative / Precision Health",
+    category: "Academic",
+    date: "YYYY-MM-DD", // replace
+    place: "",
+    img: "/asset/images/activity/delphi-precision-health.jpg",
+    alt: "Delphi Data Science Initiative badge",
+    blurb: "Participation related to data science in precision health (Population Health Sciences, PhD student).",
+    link: "#"
+  }
+];
