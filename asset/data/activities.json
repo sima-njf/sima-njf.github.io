@@ -6,7 +6,39 @@
       "description": "presented work on calibrating agent-based models with deep neural networks.",
       "link": "https://x.com/UofUBiostats/status/1852420307304493519",
       "timestamp": "2025",
-      "type":"academic"
-    }
+      "type": "academic"
+    },
+    {
+      "title": "Delphi Data Science Initiative",
+      "image": "https://pbs.twimg.com/media/GbUd4hhasAMwmcH?format=jpg&name=small",
+      "description": "poster presentation.",
+      "link": "https://x.com/UofUBiostats/status/1852420307304493519",
+      "timestamp": "2025",
+      "type": "academic"
+    },
+    {
+      "title": "Data Science Day, University of Utah",
+      "image": "https://pbs.twimg.com/media/GbUd4hhasAMwmcH?format=jpg&name=small",
+      "description": "poster presentation.",
+      "link": "https://x.com/UofUBiostats/status/1852420307304493519",
+      "timestamp": "2025",
+      "type": "academic"
+    },
+    {
+      "title": "CDC Mind & IReP Program Meeting (Atlanta)",
+      "image": "https://pbs.twimg.com/media/GbUd4hhasAMwmcH?format=jpg&name=small",
+      "description": "estimating 𝑅𝑡 from ABMs and benchmarking against Cori and Wallinga–Teunis.",
+      "link": "https://x.com/UofUBiostats/status/1852420307304493519",
+      "timestamp": "2024",
+      "type": "academic"
+    },
+    {
+      "title": "Teaching",
+      "image": "https://pbs.twimg.com/media/GbUd4hhasAMwmcH?format=jpg&name=small",
+      "description": "TA for “Introduction to R” workshop, taught by Dr. George Vega Yon.",
+      "link": "https://x.com/UofUBiostats/status/1852420307304493519",
+      "timestamp": "2025",
+      "type": "academic"
+    },
   ]
 }
