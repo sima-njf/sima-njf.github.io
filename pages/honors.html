@@ -26,7 +26,6 @@
 
   <title>Sima Khoei — Honors</title>
   <link rel="stylesheet" href="/asset/css/app.css">
-  <!-- keep existing page styles; reusing activity.css classes for cards/layout -->
   <link rel="stylesheet" href="/asset/css/activity.css">
   <link rel="stylesheet" href="/asset/css/pagesheader.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
@@ -48,9 +47,7 @@
         <div class="activity-container-content-pagesheader-right-icon">
           <a class="activity-container-content-pagesheader-a" href="/index.html"><p>Home</p></a>
         </div>
-        <div class="hamburger-menu" onclick="toggleMenu()">
-          &#9776;
-        </div>
+        <div class="hamburger-menu" onclick="toggleMenu()">&#9776;</div>
         <div class="activity-container-content-pagesheader-right-icons" id="tab-side-menu">
           <a class="activity-container-content-pagesheader-a" href="/pages/projects.html"><p>Projects</p></a>
           <div class="activity-container-content-pagesheader-a-cooldivider"></div>
@@ -65,142 +62,52 @@
       <h1 class="activity-container-content-h1">Honors &amp; Awards</h1>
 
       <div class="activity-container-content-holder">
-        <!-- removed filters to keep page focused on honors -->
         <div class="activity-container-content-holder-academic">
           <h2 class="activity-container-content-holder-academic-h2">Selected Honors (2020–2025)</h2>
 
-          <!-- Card template kept for consistent styling -->
-          <div class="activity-container-content-holder-academic-container" id="honors-container">
+          <!-- Simple typed list, no images -->
+          <ul style="margin: 0 12px 24px 12px; line-height: 1.7;">
+            <li>
+              <strong>ENAR Spring Meeting — Oral Presentation</strong><br>
+              “Automatic Calibration of Agent-Based Models using Deep Neural Networks.”<br>
+              <span class="activity-timestamp">March 26, 2025 — New Orleans, LA</span>
+            </li>
 
-            <!-- ENAR Oral Presentation -->
-            <div class="activity-container-content-holder-academic-container-each flip-container">
-              <div class="activity-flipper">
-                <div class="activity-front">
-                  <img class="activity-container-content-holder-academic-container-each-img" src="/asset/images/honors/enar.jpg" alt="ENAR Spring Meeting">
-                  <div class="activity-container-content-holder-academic-container-each-strongholder">
-                    <strong class="activity-container-content-holder-academic-container-each-strong">
-                      ENAR Spring Meeting — Oral Presentation
-                    </strong>
-                  </div>
-                </div>
-                <div class="activity-back">
-                  <p class="activity-container-content-holder-academic-container-each-p">
-                    “Automatic Calibration of Agent-Based Models using Deep Neural Networks.”
-                  </p>
-                  <p class="activity-timestamp">March 26, 2025 — New Orleans, LA</p>
-                  <!-- optional link -->
-                  <!-- <p class="activity-container-content-holder-academic-container-each-pa"><a class="activity-container-content-holder-academic-container-each-a" target="_blank" href="#">Program</a></p> -->
-                </div>
-              </div>
-            </div>
+            <li>
+              <strong>JSM 2025 — Oral &amp; Poster Selections</strong><br>
+              Competitive selection (unable to attend).<br>
+              <span class="activity-timestamp">August 2025 — Nashville, TN</span>
+            </li>
 
-            <!-- JSM 2025 Selections -->
-            <div class="activity-container-content-holder-academic-container-each flip-container">
-              <div class="activity-flipper">
-                <div class="activity-front">
-                  <img class="activity-container-content-holder-academic-container-each-img" src="/asset/images/honors/jsm.jpg" alt="JSM 2025">
-                  <div class="activity-container-content-holder-academic-container-each-strongholder">
-                    <strong class="activity-container-content-holder-academic-container-each-strong">
-                      JSM 2025 — Oral &amp; Poster Selections
-                    </strong>
-                  </div>
-                </div>
-                <div class="activity-back">
-                  <p class="activity-container-content-holder-academic-container-each-p">
-                    Competitive selection for oral and poster presentations (unable to attend).
-                  </p>
-                  <p class="activity-timestamp">August 2025 — Nashville, TN</p>
-                </div>
-              </div>
-            </div>
+            <li>
+              <strong>DELPHI Data Science Initiative — Poster</strong><br>
+              “Automatic Calibration of Agent-Based Models using Deep Neural Networks.”<br>
+              <span class="activity-timestamp">January 2025</span>
+            </li>
 
-            <!-- DELPHI DSI Poster -->
-            <div class="activity-container-content-holder-academic-container-each flip-container">
-              <div class="activity-flipper">
-                <div class="activity-front">
-                  <img class="activity-container-content-holder-academic-container-each-img" src="/asset/images/honors/delphi.jpg" alt="DELPHI Data Science Initiative">
-                  <div class="activity-container-content-holder-academic-container-each-strongholder">
-                    <strong class="activity-container-content-holder-academic-container-each-strong">
-                      DELPHI Data Science Initiative — Poster
-                    </strong>
-                  </div>
-                </div>
-                <div class="activity-back">
-                  <p class="activity-container-content-holder-academic-container-each-p">
-                    “Automatic Calibration of Agent-Based Models using Deep Neural Networks.”
-                  </p>
-                  <p class="activity-timestamp">January 2025</p>
-                </div>
-              </div>
-            </div>
+            <li>
+              <strong>Centers for Disease Control and Prevention — Oral Presentation</strong><br>
+              “Comparing the Performance of Different R<sub>t</sub> Estimations: Insights from an Agent-Based Network Model Study.”<br>
+              <span class="activity-timestamp">July 11–12, 2024 — Atlanta, GA</span>
+            </li>
 
-            <!-- CDC Oral Presentation -->
-            <div class="activity-container-content-holder-academic-container-each flip-container">
-              <div class="activity-flipper">
-                <div class="activity-front">
-                  <img class="activity-container-content-holder-academic-container-each-img" src="/asset/images/honors/cdc.jpg" alt="Centers for Disease Control and Prevention">
-                  <div class="activity-container-content-holder-academic-container-each-strongholder">
-                    <strong class="activity-container-content-holder-academic-container-each-strong">
-                      CDC — Oral Presentation
-                    </strong>
-                  </div>
-                </div>
-                <div class="activity-back">
-                  <p class="activity-container-content-holder-academic-container-each-p">
-                    “Comparing the Performance of Different R<sub>t</sub> Estimations: Insights from an Agent-Based Network Model Study.”
-                  </p>
-                  <p class="activity-timestamp">July 11–12, 2024 — Atlanta, GA</p>
-                </div>
-              </div>
-            </div>
+            <li>
+              <strong>Fully Funded Ph.D. Position — Biostatistics</strong><br>
+              Awarded at the University of Utah.<br>
+              <span class="activity-timestamp">2023 — Salt Lake City, UT</span>
+            </li>
 
-            <!-- Fully Funded PhD -->
-            <div class="activity-container-content-holder-academic-container-each flip-container">
-              <div class="activity-flipper">
-                <div class="activity-front">
-                  <img class="activity-container-content-holder-academic-container-each-img" src="/asset/images/honors/uofu.jpg" alt="University of Utah">
-                  <div class="activity-container-content-holder-academic-container-each-strongholder">
-                    <strong class="activity-container-content-holder-academic-container-each-strong">
-                      Fully Funded Ph.D. Position — Biostatistics
-                    </strong>
-                  </div>
-                </div>
-                <div class="activity-back">
-                  <p class="activity-container-content-holder-academic-container-each-p">
-                    Awarded fully funded Ph.D. position in Biostatistics at the University of Utah.
-                  </p>
-                  <p class="activity-timestamp">2023 — Salt Lake City, UT</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Ranked First, B.A. -->
-            <div class="activity-container-content-holder-academic-container-each flip-container">
-              <div class="activity-flipper">
-                <div class="activity-front">
-                  <img class="activity-container-content-holder-academic-container-each-img" src="/asset/images/honors/tehran.jpg" alt="University of Tehran">
-                  <div class="activity-container-content-holder-academic-container-each-strongholder">
-                    <strong class="activity-container-content-holder-academic-container-each-strong">
-                      Ranked First — B.A. in Statistics
-                    </strong>
-                  </div>
-                </div>
-                <div class="activity-back">
-                  <p class="activity-container-content-holder-academic-container-each-p">
-                    Ranked first in the Bachelor’s program at the University of Tehran.
-                  </p>
-                  <p class="activity-timestamp">2020 — Tehran, Iran</p>
-                </div>
-              </div>
-            </div>
-
-          </div> <!-- /honors-container -->
+            <li>
+              <strong>Ranked First — B.A. in Statistics</strong><br>
+              University of Tehran.<br>
+              <span class="activity-timestamp">2020 — Tehran, Iran</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- removed /asset/js/activity.js since this page is static; keeps global index.js -->
   <script src="/index.js"></script>
 </body>
 </html>
