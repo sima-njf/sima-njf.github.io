@@ -60,13 +60,7 @@
           <a class="activity-container-content-pagesheader-a" href="/pages/honors.html"><p>Honors</p></a>
         </div>
       </div>
-
       <h1 class = "activity-container-content-h1">Activity Timeline</h1>
-
-      <!-- NEW: brief note about hobbies -->
-      <p style="margin: 0 12px 18px 12px;">
-        Outside of research, I enjoy <strong>hiking</strong> and <strong>skiing</strong>.
-      </p>
 
       <div class = "activity-container-content-holder">
         <div class = "activity-container-content-holder-filter">
@@ -79,77 +73,33 @@
         <!-- Academic -->
         <div class = "activity-container-content-holder-academic">
           <h2 class = "activity-container-content-holder-academic-h2">Academic Activities:</h2>
-          
-          <div class="activity-container-content-holder-academic-container-each flip-container" id="activity-template" style="display: none;">
-            <div class="activity-flipper">
-                <!-- FRONT SIDE -->
-                <div class="activity-front">
-                    <img class="activity-container-content-holder-academic-container-each-img lazy" data-src="/asset/images/activity/ac01.jpg" alt="Profile Picture">
-                    <div class="activity-container-content-holder-academic-container-each-strongholder">
-                      <strong class="activity-container-content-holder-academic-container-each-strong"></strong>
-                    </div>
-                </div>
-        
-                <!-- BACK SIDE -->
-                <div class="activity-back">
-                    <p class="activity-container-content-holder-academic-container-each-p"></p>
-                    <p class="activity-timestamp"></p>
-                    <p class="activity-container-content-holder-academic-container-each-pa"><a class="activity-container-content-holder-academic-container-each-a" target="blank">Link</a></p>
-                </div>
-            </div>
-          </div>
-          <div class = "activity-container-content-holder-academic-container" id="activities-container"></div>
+
+          <!-- REPLACED cards with a simple typed list (no images) -->
+          <ul class="activity-simple-list" style="margin: 0 12px 24px 12px; line-height: 1.6;">
+            <li><strong>Mar 26, 2025 — ENAR Spring Meeting (Oral):</strong> “Automatic Calibration of Agent-Based Models using Deep Neural Networks.” New Orleans, LA.</li>
+            <li><strong>Aug 2025 — JSM 2025 (Selections):</strong> Oral &amp; Poster accepted (unable to attend). Nashville, TN.</li>
+            <li><strong>Jan 2025 — DELPHI Data Science Initiative (Poster):</strong> “Automatic Calibration of Agent-Based Models using Deep Neural Networks.”</li>
+            <li><strong>Jul 11–12, 2024 — CDC (Oral):</strong> “Comparing the Performance of Different R<sub>t</sub> Estimations: Insights from an Agent-Based Network Model Study.” Atlanta, GA.</li>
+            <li><strong>2023 — Fully Funded Ph.D. Position:</strong> Biostatistics, University of Utah, Salt Lake City, UT.</li>
+            <li><strong>2020 — Ranked First:</strong> B.A. in Statistics, University of Tehran, Tehran, Iran.</li>
+          </ul>
         </div>
 
-        <!-- NEW: Non-academic -->
+        <!-- Non-academic -->
         <div class = "activity-container-content-holder-academic">
           <h2 class = "activity-container-content-holder-academic-h2">Non-academic Activities:</h2>
 
-          <div class="activity-container-content-holder-academic-container" id="non-activities-container">
-            <!-- Hiking card -->
-            <div class="activity-container-content-holder-academic-container-each flip-container" data-category="Non-academic">
-              <div class="activity-flipper">
-                <div class="activity-front">
-                  <img class="activity-container-content-holder-academic-container-each-img lazy" data-src="/asset/images/activity/non_hiking.jpg" alt="Hiking">
-                  <div class="activity-container-content-holder-academic-container-each-strongholder">
-                    <strong class="activity-container-content-holder-academic-container-each-strong">Hiking</strong>
-                  </div>
-                </div>
-                <div class="activity-back">
-                  <p class="activity-container-content-holder-academic-container-each-p">
-                    Exploring trails around the Wasatch and Uinta ranges.
-                  </p>
-                  <p class="activity-timestamp">Ongoing</p>
-                  <!-- Optional link; keep or remove -->
-                  <!-- <p class="activity-container-content-holder-academic-container-each-pa"><a class="activity-container-content-holder-academic-container-each-a" target="blank" href="https://www.alltrails.com/us/utah">Link</a></p> -->
-                </div>
-              </div>
-            </div>
-
-            <!-- Skiing card -->
-            <div class="activity-container-content-holder-academic-container-each flip-container" data-category="Non-academic">
-              <div class="activity-flipper">
-                <div class="activity-front">
-                  <img class="activity-container-content-holder-academic-container-each-img lazy" data-src="/asset/images/activity/non_skiing.jpg" alt="Skiing">
-                  <div class="activity-container-content-holder-academic-container-each-strongholder">
-                    <strong class="activity-container-content-holder-academic-container-each-strong">Skiing</strong>
-                  </div>
-                </div>
-                <div class="activity-back">
-                  <p class="activity-container-content-holder-academic-container-each-p">
-                    Winter weekends on the slopes; local favorites include Alta and Brighton.
-                  </p>
-                  <p class="activity-timestamp">Ongoing</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- Simple typed items for hobbies -->
+          <ul class="activity-simple-list" style="margin: 0 12px 24px 12px; line-height: 1.6;">
+            <li><strong>Hiking:</strong> Exploring trails around the Wasatch and Uinta ranges.</li>
+            <li><strong>Skiing:</strong> Winter weekends on the slopes; local favorites include Alta and Brighton.</li>
+          </ul>
         </div>
-        <!-- /Non-academic -->
       </div>
     </div>
   </div>
 
+  <!-- keep scripts; lists don't require activity.js but leaving it doesn't hurt -->
   <script src="/asset/js/activity.js"></script>
   <script src="/index.js"></script>
 </body>
