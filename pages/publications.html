@@ -13,7 +13,7 @@
     <meta property="og:image" content="/asset/images/profile.webp" />
     <meta property="og:image:alt" content="Sima Najafzadeh Khoei publications" />
     <meta property="og:title" content="Sima Najafzadeh Khoei publications" />
-    <meta property="og:url" content="https://sima-njf.github.io/pages/projects.html" />
+    <meta property="og:url" content="https://sima-njf.github.io/pages/publications.html" />
     <meta property="og:description" content="This page is dedicated to showcasing my publications." />
     <meta property="og:type" content="website" />
     <meta name="author" content="Sima Najafzadeh Khoei" />
@@ -35,49 +35,86 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
       gtag('config', 'G-6DDEG362J3');
     </script>
 </head>
 
 <body>
-  <div class = "activity-container">
-    <div class = "activity-container-content">
+  <div class="activity-container">
+    <div class="activity-container-content">
       <div class="activity-container-content-pagesheader">
         <div class="activity-container-content-pagesheader-right-icon">
           <a class="activity-container-content-pagesheader-a" href="/index.html"><p>Home</p></a>
         </div>
-        <div class="hamburger-menu" onclick="toggleMenu()">
-          &#9776; 
-        </div>
-        <div class="activity-container-content-pagesheader-right-icons" id = "tab-side-menu">
+        <div class="hamburger-menu" onclick="toggleMenu()">&#9776;</div>
+        <div class="activity-container-content-pagesheader-right-icons" id="tab-side-menu">
           <a class="activity-container-content-pagesheader-a" href="/pages/projects.html"><p>Projects</p></a>
           <div class="activity-container-content-pagesheader-a-cooldivider"></div>
-          <a class="activity-container-content-pagesheader-a " href="/pages/activity.html"><p>Activities</p></a>
+          <a class="activity-container-content-pagesheader-a" href="/pages/activity.html"><p>Activities</p></a>
           <div class="activity-container-content-pagesheader-a-cooldivider"></div>
           <a class="activity-container-content-pagesheader-a" href="/pages/publications.html"><p class="header-active">Publications</p></a>
           <div class="activity-container-content-pagesheader-a-cooldivider"></div>
           <a class="activity-container-content-pagesheader-a" href="/pages/honors.html"><p>Honors</p></a>
         </div>
       </div>
-      <h1 class = "publications-h1-view">Academic Publication</h1>
 
-        <div class="filter-container">
-            <label for="year-filter">Filter by Year:</label>
-            <select id="year-filter">
-                <option value="all">Show All</option>
-            </select>
-        </div>
+      <h1 class="publications-h1-view">Academic Publications</h1>
 
-        <div  id="publications-container"></div>
+      <div class="filter-container">
+        <label for="year-filter">Filter by Year:</label>
+        <select id="year-filter">
+          <option value="all">Show All</option>
+        </select>
+      </div>
 
+      <!-- Typed lists (no images) -->
+      <div id="publications-container" style="margin: 0 12px 36px 12px; line-height:1.7;">
+
+        <h2 class="publications-h2-view">Preprints</h2>
+        <ul>
+          <li>
+            <strong>Machine Generalize Learning in Agent-Based Models: Going Beyond Surrogate Models for Calibration in ABMs</strong>.
+            S. Najafzadehkhoei, G. Vega Yon, B. Modenesi, D. S. Meyer. <em>arXiv preprint</em>, 2025.
+          </li>
+          <li>
+            <strong>A novel approach for classifying Monoamine Neurotransmitters by applying Machine Learning on UV plasmonic-engineered Auto Fluorescence Time Decay Series (AFTDS)</strong>.
+            M. Mohammadi, <strong>S. Najafzadehkhoei</strong>, G. Vega Yon, Y. Wang. <em>arXiv</em>, July 9, 2025.
+            <a href="https://arxiv.org/abs/2507.07227" target="_blank" rel="noopener">arXiv:2507.07227</a>
+          </li>
+        </ul>
+
+        <h2 class="publications-h2-view">Manuscripts in Preparation</h2>
+        <ul>
+          <li>
+            <strong><code>imaginarycss</code>: An R package for Cognitive Social Structures</strong>.
+            S. Najafzadehkhoei, G. Vega Yon, K. Tanaka. <em>In preparation</em> (Sept. 2025).
+          </li>
+        </ul>
+
+        <h2 class="publications-h2-view">Software</h2>
+        <ul>
+          <li>
+            <strong><code>epiworldRcalibrate</code></strong> — R package for ML-based calibration in ABMs.
+            <em>Status:</em> CRAN/JOSS submission in preparation.
+          </li>
+          <li>
+            <strong><code>imaginarycss</code></strong> — R package for CSS analysis (data model, error taxonomy, accuracy metrics, null models).
+          </li>
+        </ul>
+
+        <h2 class="publications-h2-view">Talks &amp; Presentations</h2>
+        <ul>
+          <li><strong>Mar 26, 2025 — ENAR Spring Meeting (Oral):</strong> “Automatic Calibration of Agent-Based Models using Deep Neural Networks.” New Orleans, LA.</li>
+          <li><strong>Aug 2025 — JSM 2025 (Selections):</strong> Oral &amp; Poster accepted (unable to attend). Nashville, TN.</li>
+          <li><strong>Jan 2025 — DELPHI Data Science Initiative (Poster):</strong> “Automatic Calibration of Agent-Based Models using Deep Neural Networks.”</li>
+          <li><strong>Jul 11–12, 2024 — CDC (Oral):</strong> “Comparing the Performance of Different R<sub>t</sub> Estimations: Insights from an Agent-Based Network Model Study.” Atlanta, GA.</li>
+        </ul>
+
+      </div>
     </div>
   </div>
 
-
-  <script src="/asset/js/publications.js"></script>
+  <!-- Keeping global script; page content is static so /asset/js/publications.js is not required -->
   <script src="/index.js"></script>
 </body>
-
-
 </html>
