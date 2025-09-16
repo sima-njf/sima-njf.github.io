@@ -35,32 +35,30 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
       gtag('config', 'G-6DDEG362J3');
     </script>
 </head>
 
 <body>
-  <div class = "activity-container">
-    <div class = "activity-container-content">
+  <div class="activity-container">
+    <div class="activity-container-content">
         <div class="activity-container-content-pagesheader">
             <div class="activity-container-content-pagesheader-right-icon">
-            <a class="activity-container-content-pagesheader-a" href="/index.html"><p>Home</p></a>
+              <a class="activity-container-content-pagesheader-a" href="/index.html"><p>Home</p></a>
             </div>
-            <div class="hamburger-menu" onclick="toggleMenu()">
-            &#9776; 
-            </div>
-            <div class="activity-container-content-pagesheader-right-icons" id = "tab-side-menu">
+            <div class="hamburger-menu" onclick="toggleMenu()">&#9776;</div>
+            <div class="activity-container-content-pagesheader-right-icons" id="tab-side-menu">
                 <a class="activity-container-content-pagesheader-a" href="/pages/projects.html"><p class="header-active">Projects</p></a>
                 <div class="activity-container-content-pagesheader-a-cooldivider"></div>
-                <a class="activity-container-content-pagesheader-a " href="/pages/activity.html"><p>Activities</p></a>
+                <a class="activity-container-content-pagesheader-a" href="/pages/activity.html"><p>Activities</p></a>
                 <div class="activity-container-content-pagesheader-a-cooldivider"></div>
                 <a class="activity-container-content-pagesheader-a" href="/pages/publications.html"><p>Publications</p></a>
                 <div class="activity-container-content-pagesheader-a-cooldivider"></div>
                 <a class="activity-container-content-pagesheader-a" href="/pages/honors.html"><p>Honors</p></a>
             </div>
         </div>
-        <h1 class = "project-h1-view">Academic Projects</h1>
+
+        <h1 class="project-h1-view">Academic Projects</h1>
 
         <div class="filter-container">
             <label for="year-filter">Filter by Year:</label>
@@ -69,16 +67,40 @@
             </select>
         </div>
 
-        <div  id="projects-container"></div>
-        
+        <!-- Typed list (no images) -->
+        <div id="projects-container" style="margin: 0 12px 32px 12px;">
+          <ul class="project-simple-list" style="line-height:1.7;">
+            <li>
+              <strong>epiworldRcalibrate</strong> — R package for ML-based calibration of epidemic agent-based models
+              (three-layer bidirectional LSTM calibrator; accuracy/runtime gains over ABC). <em>Status:</em> in development.
+            </li>
+            <li>
+              <strong>imaginarycss</strong> — R package for Cognitive Social Structures (CSS-native data model, perceptual
+              error taxonomy, tie-level accuracy, accuracy-preserving null models). <em>Status:</em> in development.
+            </li>
+            <li>
+              <strong>Comparative evaluation of R<sub>t</sub> estimators</strong> — Agent-based network models to assess
+              performance of effective reproduction number estimators; collaboration with CDC/SDBC.
+            </li>
+            <li>
+              <strong>Machine Generalize Learning for ABM calibration</strong> — Supervised calibrator beyond surrogate models;
+              integrated with <code>epiworldR</code> for practical workflows.
+            </li>
+            <li>
+              <strong>EHR/VA workflows</strong> — Reproducible pipelines for large clinical datasets (QA, versioning, and privacy-aware analysis).
+            </li>
+            <li>
+              <strong>Neurotransmitter classification via AFTDS + ML</strong> — LSTM on time-dependent fluorescence with UV plasmonic
+              enhancement; probe-free detection of DA/NE/DOPAC.
+            </li>
+          </ul>
+        </div>
 
     </div>
   </div>
 
-
-  <script src="/asset/js/projects.js"></script>
+  <!-- Keeping global script; page content is static so /asset/js/projects.js is not required -->
   <script src="/index.js"></script>
 </body>
-
-
 </html>
+
